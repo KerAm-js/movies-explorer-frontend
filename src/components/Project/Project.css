@@ -1,0 +1,7 @@
+@import url('./elements/index.css');
+
+.project {
+  background-color: #202020;
+  display: flex;
+  justify-content: center;
+}

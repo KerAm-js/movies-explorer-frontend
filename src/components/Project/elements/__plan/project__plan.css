@@ -1,0 +1,8 @@
+.project__plan {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 228px 1fr;
+  grid-template-rows: 36px 31px;
+  justify-items: center;
+}

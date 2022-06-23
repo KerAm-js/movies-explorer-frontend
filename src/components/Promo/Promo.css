@@ -1,0 +1,8 @@
+@import url('./elements/index.css');
+
+.promo {
+  background-color: #073042;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}

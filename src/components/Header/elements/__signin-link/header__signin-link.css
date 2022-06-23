@@ -1,0 +1,9 @@
+.header__signin-link {
+  font-size: 12px;
+  line-height: 16px;
+  min-height: 32px;
+  min-width: 76px;
+  border-radius: 3px;
+  background-color: #3DDC84;
+  color: #000;
+}
