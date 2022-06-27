@@ -2,6 +2,7 @@
 
 .header {
   margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   background-color: #202020;
@@ -9,10 +10,4 @@
 
 .header_main-page {
   background-color: #073042;
-}
-
-@media screen and (max-width: 768px) {
-  .header {
-    padding: 18px 30px;
-  }
 }

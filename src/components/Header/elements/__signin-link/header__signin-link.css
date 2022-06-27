@@ -7,3 +7,11 @@
   background-color: #3DDC84;
   color: #000;
 }
+
+@media screen and (max-width: 425px) {
+  .header__signin-link {
+    min-height: 26px;
+    min-width: 54px;
+    font-size: 10px;
+  }
+}

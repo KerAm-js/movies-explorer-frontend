@@ -9,3 +9,10 @@
   width: 100%;
   max-width: 1140px;
 }
+
+@media screen and (max-width: 425px) {
+  .student__portfolio {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+}

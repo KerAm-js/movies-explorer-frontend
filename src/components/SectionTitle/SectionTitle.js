@@ -3,9 +3,11 @@ import './SectionTitle.css';
 
 function SectionTitle ({ title }) {
   return (
-    <h2 className="section__title">
-      {title}
-    </h2>
+    <div className="title-container">
+      <h2 className="section-title">
+        {title}
+      </h2>
+    </div>
   )
 }
 

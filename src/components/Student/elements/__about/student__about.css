@@ -8,3 +8,18 @@
   padding: 0;
   mix-blend-mode: normal;
 }
+
+@media screen and (max-width: 768px) {
+  .student__about {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .student__about {
+    font-size: 11px;
+    line-height: 16px;
+    margin-bottom: 40px;
+  }
+}

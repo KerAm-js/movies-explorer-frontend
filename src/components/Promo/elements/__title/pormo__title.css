@@ -7,3 +7,20 @@
   margin: 0 0 36px 0;
   max-width: 640px;
 }
+
+@media screen and (max-width: 1023px) {
+  .promo__title {
+    margin: 0 0 22px;
+    text-align: center;
+    font-size: 40px;
+    line-height: 50px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .promo__title {
+    margin: 0 0 24px;
+    font-size: 30px;
+    line-height: 38px;
+  }
+}

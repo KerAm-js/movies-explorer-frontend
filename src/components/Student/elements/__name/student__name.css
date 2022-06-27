@@ -7,3 +7,19 @@
   color: #fff;
   letter-spacing: -0.04em;
 }
+
+@media screen and (max-width: 768px) {
+  .student__name {
+    font-size: 40px;
+    line-height: 40px;
+    margin-bottom: 16px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .student__name {
+    font-size: 30px;
+    line-height: 36px;
+    margin-bottom: 16px;
+  }
+}

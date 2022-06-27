@@ -7,3 +7,17 @@
   width: 100%;
   max-width: 1140px;
 }
+
+@media screen and (max-width: 768px) {
+  .project__description {
+    margin-bottom: 93px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .project__description {
+    margin: 60px 0;
+    flex-direction: column;
+    gap: 56px;
+  }
+}

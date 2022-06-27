@@ -12,7 +12,7 @@ function Promo() {
         <div className="promo__main-content">
           <div className="promo__text">
             <h1 className="promo__title">
-              Учебный проект студента факультета <br className="promo__title-line-break"/>Веб-разработки.
+              Учебный проект студента факультета<br className="promo__title-line-break"/> Веб-разработки.
             </h1>
             <p className="promo__subtitle">
               Листайте ниже, чтобы узнать больше про этот проект и его создателя.

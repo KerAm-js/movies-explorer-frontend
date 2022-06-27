@@ -29,10 +29,10 @@ function Project() {
           4 недели
         </p>
         <p className="project__backend-part">
-          backend
+          Back-end
         </p>
         <p className="project__frontend-part">
-          frontend
+          Front-end
         </p>
       </div>
     </section>

@@ -1,4 +1,6 @@
 .promo__subtitle {
+  margin: 0;
+  padding: 0;
   font-weight: 400;
   font-size: 13px;
   line-height: 16px;
@@ -6,4 +8,10 @@
   max-width: 310px;
   opacity: 0.5;
   mix-blend-mode: normal;
+}
+
+@media screen and (max-width: 1023px) {
+  .promo__subtitle {
+    text-align: center;
+  }
 }

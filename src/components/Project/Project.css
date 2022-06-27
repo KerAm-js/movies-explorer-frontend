@@ -5,6 +5,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1280px;
   padding: 110px 70px;
+}
+
+@media screen and (max-width: 768px) {
+  .project {
+    padding: 90px 50px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .project {
+    padding: 70px 18px;
+  }
 }

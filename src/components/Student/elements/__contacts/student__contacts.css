@@ -5,3 +5,9 @@
   display: flex;
   gap: 20px;
 }
+
+@media screen and (max-width: 425px) {
+  .student__contacts {
+    gap: 26px;
+  }
+}

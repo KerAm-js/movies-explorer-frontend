@@ -8,3 +8,17 @@
   text-align: center;
   letter-spacing: -0.04em;
 }
+
+@media screen and (max-width: 768px) {
+  .technologies__title {
+    margin-top: 80px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .technologies__title {
+    margin-top: 60px;
+    font-size: 30px;
+    line-height: 36px;
+  }
+}

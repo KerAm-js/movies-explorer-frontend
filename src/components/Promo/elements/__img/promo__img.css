@@ -1,0 +1,20 @@
+.promo__img {
+  max-width: 310px;
+  max-height: 304px;
+  margin: 0 0 0 100px;
+}
+
+@media screen and (max-width: 1023px) {
+  .promo__img {
+    margin-left: 0;
+    margin-bottom: 48px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .promo__img {
+    margin-bottom: 44px;
+    max-width: 210px;
+    max-height: 206px;
+  }
+}

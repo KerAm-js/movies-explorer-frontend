@@ -1,9 +1,26 @@
 @import url('./elements/index.css');
 
 .footer {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
   background-color: #202020;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0 70px;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .footer {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }

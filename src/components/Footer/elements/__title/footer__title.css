@@ -8,5 +8,12 @@
   border-bottom: 1px solid #424242;
   width: 100%;
   text-align: center;
-  max-width: 1280px;
+  max-width: 1140px;
+}
+
+@media screen and (max-width: 425px) {
+  .footer__title {
+    font-size: 12px;
+    line-height: 15px;
+  }
 }
