@@ -1,0 +1,8 @@
+.student__project {
+  border-bottom: 1px solid #424242;
+  box-sizing: border-box;
+}
+
+.student__project:last-of-type {
+  border: none;
+}

@@ -1,0 +1,12 @@
+@import url('./elements/index.css');
+
+.links-item {
+  margin: 0;
+  padding: 0;
+  transition: opacity .2s linear;
+  cursor: pointer;
+}
+
+.links-item:hover {
+  opacity: .7;
+}

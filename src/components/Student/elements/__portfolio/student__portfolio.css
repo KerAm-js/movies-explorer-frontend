@@ -1,0 +1,11 @@
+.student__portfolio {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #8B8B8B;
+  margin: 0 0 30px;
+  padding: 0;
+  mix-blend-mode: normal;
+  width: 100%;
+  max-width: 1140px;
+}

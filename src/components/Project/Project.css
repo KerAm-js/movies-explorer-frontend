@@ -3,5 +3,8 @@
 .project {
   background-color: #202020;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1280px;
+  padding: 110px 70px;
 }

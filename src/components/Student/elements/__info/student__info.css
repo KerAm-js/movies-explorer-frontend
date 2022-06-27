@@ -1,0 +1,7 @@
+.student__info {
+  display: flex;
+  justify-content: space-between;
+  margin: 66px 0 100px;
+  width: 100%;
+  max-width: 1140px;
+}

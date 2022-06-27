@@ -1,0 +1,11 @@
+.technologies__list {
+  list-style: none;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 90px);
+  grid-gap: 10px;
+}

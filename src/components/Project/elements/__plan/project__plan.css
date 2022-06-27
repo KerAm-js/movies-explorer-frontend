@@ -1,6 +1,8 @@
 .project__plan {
   margin: 0;
   padding: 0;
+  width: 100%;
+  max-width: 1140px;
   display: grid;
   grid-template-columns: 228px 1fr;
   grid-template-rows: 36px 31px;
