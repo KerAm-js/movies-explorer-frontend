@@ -1,12 +1,15 @@
 @import url('./__content/header__content.css');
+@import url('./__content/_movies-page/header__content_movies-page.css');
 @import url('./__logo/header__logo.css');
 @import url('./__nav/header__nav.css');
 @import url('./__signup-link/header__signup-link.css');
 @import url('./__signin-link/header__signin-link.css');
 @import url('./__auth-links/header__auth-links.css');
+@import url('./__menu-btn/header__menu-btn.css');
 @import url('./__nav-link/header__nav-link.css');
 @import url('./__nav-link/_active/header__nav-link_active.css');
 @import url('./__movies-link/header__movies-link.css');
+@import url('./__movies-links/header__movies-links.css');
 @import url('./__saved-movies-link/header__saved-movies-link.css');
 @import url('./__profile-img/header__profile-img.css');
 @import url('./__profile-link/header__profile-link.css');

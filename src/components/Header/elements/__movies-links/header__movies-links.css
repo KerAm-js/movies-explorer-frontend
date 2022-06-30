@@ -1,0 +1,7 @@
+@media screen and (max-width: 768px) {
+  .header__movies-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

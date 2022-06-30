@@ -1,0 +1,21 @@
+@import url('./elements/index.css');
+
+.search {
+  background-color: #202020;
+  padding: 0 70px 10px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+  .search {
+    padding: 0 30px 10px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .search {
+    padding: 0 10px 10px;
+  }
+}

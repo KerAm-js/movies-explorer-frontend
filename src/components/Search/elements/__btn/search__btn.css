@@ -1,0 +1,9 @@
+.search__btn {
+  margin-left: 46px;
+  background-color: #4285F4;
+  border-radius: 48px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+}

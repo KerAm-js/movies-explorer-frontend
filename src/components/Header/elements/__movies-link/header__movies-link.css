@@ -1,3 +1,10 @@
 .header__movies-link {
   margin-right: 16px;
 }
+
+@media screen and (max-width: 768px) {
+  .header__movies-link {
+    margin-right: 0;
+    border-bottom: 2px solid #fff;
+  }
+}

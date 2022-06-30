@@ -1,0 +1,13 @@
+.checkbox__title {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: #fff;
+}
+
+@media screen and (max-width: 425px) {
+  .checkbox__title {
+    font-size: 11px;
+    line-height: 18px;
+  }
+}

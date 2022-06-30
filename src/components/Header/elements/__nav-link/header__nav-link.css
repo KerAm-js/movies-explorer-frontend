@@ -3,3 +3,22 @@
   font-size: 13px;
   line-height: 18px;
 }
+
+@media screen and (max-width: 768px) {
+  .header__nav-link {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 22px;
+    border-bottom-width: 2px;
+    padding-bottom: 4px;
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .header__nav-link {
+    margin-bottom: 15px;
+    padding-bottom: 7px;
+  }
+}

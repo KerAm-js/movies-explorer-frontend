@@ -2,7 +2,7 @@ import React from "react";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import student_photo from '../../images/student-photo.png';
 import './Student.css';
-import arrow from '../../images/arrow.svg';
+import arrow from '../../images/link-arrow.svg';
 import { portfolio, studentContacts } from "../../utils/constants";
 import LinksItem from "../LinksItem/LinksItem";
 

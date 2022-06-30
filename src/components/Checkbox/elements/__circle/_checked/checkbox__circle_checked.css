@@ -1,0 +1,4 @@
+.checkbox__circle_checked {
+  background-color: #fff;
+  transform: translateX(16px);
+}
