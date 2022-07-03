@@ -16,7 +16,7 @@ function Technologies() {
         </p>
         <ul className="technologies__list">
           {
-            technologies.map(tech => <Technology title={tech} />)
+            technologies.map((tech, index) => <Technology key={index} title={tech} />)
           }
         </ul>
     </section>

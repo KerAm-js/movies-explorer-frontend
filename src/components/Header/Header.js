@@ -17,7 +17,6 @@ function Header({ isMainPage }) {
   const menuBtn = opened ? menuClose : menuBurger;
 
   const toggleDrawer = () => setOpened(!opened);
-  console.log(opened);
   
   return (
     <header className={`header ${ isMainPage && 'header_main-page'}`}>
@@ -35,9 +34,6 @@ function Header({ isMainPage }) {
             )
             : (
               <>
-                <Button className="header__menu-btn" onClick={toggleDrawer}>
-                  <img className="header__menu-img" src={menuBtn} alt="Меню" />
-                </Button>
                 <nav className={`header__nav ${drawerSelector}`}>
                   <div className="header__movies-links">
                     <Link to="#" className="header__nav-link header__movies-link header__nav-link_active" title='Фильмы' />
@@ -50,6 +46,9 @@ function Header({ isMainPage }) {
                     </Button>
                   </NavLink>
                 </nav>
+                <Button className="header__menu-btn" onClick={toggleDrawer}>
+                  <img className="header__menu-img" src={menuBtn} alt="Меню" />
+                </Button>
               </>
             )
         }

@@ -15,8 +15,8 @@ function Footer() {
         </p>
         <ul className="footer__links">
           {
-            footerLinks.map(({ title, link }) => (
-              <LinksItem listSelector="footer__links-item" linkSelector="footer__link" title={title} link={link} />
+            footerLinks.map(({ title, link }, index) => (
+              <LinksItem key={index} listSelector="footer__links-item" linkSelector="footer__link" title={title} link={link} />
             ))
           }
         </ul>

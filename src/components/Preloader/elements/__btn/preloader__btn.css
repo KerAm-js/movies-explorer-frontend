@@ -1,0 +1,16 @@
+.preloader__btn {
+  border-radius: 5px;
+  border: 1px solid #424242;
+  min-width: 320px;
+  min-height: 36px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #fff;
+}
+
+@media screen and (max-width: 425px) {
+  .preloader__btn {
+    min-width: 240px;
+  }
+}

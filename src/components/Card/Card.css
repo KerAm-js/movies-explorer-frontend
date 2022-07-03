@@ -1,0 +1,8 @@
+@import url('./elements/index.css');
+
+.card {
+  padding: 0;
+  margin: 0;
+  background-color: #222222;
+  border-radius: 6px;
+}

@@ -30,8 +30,8 @@ function Student() {
             </div>
             <ul className="student__contacts">
               {
-                studentContacts.map(({ title, link }) => (
-                  <LinksItem itemSelector="student__contact" linkSelector="student__contact-link" title={title} link={link} />
+                studentContacts.map(({ title, link }, index) => (
+                  <LinksItem key={index} itemSelector="student__contact" linkSelector="student__contact-link" title={title} link={link} />
                 ))
               }
             </ul>
@@ -41,8 +41,8 @@ function Student() {
         <p className="student__portfolio">Портфолио</p>
         <ul className="student__projects">
           {
-            portfolio.map(({ title, link }) => (
-              <LinksItem itemSelector="student__project" linkSelector="student__project-link" link={link}>
+            portfolio.map(({ title, link }, index) => (
+              <LinksItem key={index} itemSelector="student__project" linkSelector="student__project-link" link={link}>
                 {title}
                 <img className="student__arrow" src={arrow} alt="Стрелка" />
               </LinksItem>
