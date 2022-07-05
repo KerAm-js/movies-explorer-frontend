@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Button from "../Button/Button";
 import Link from "../Link/Link";
-import logo from '../../images/logo.svg';
 import menuBurger from '../../images/menu-burger.svg';
 import menuClose from '../../images/close.svg';
 import profile_img from '../../images/account-icon.svg';
 import './Header.css';
+import Logo from "../Logo/Logo";
 
 
 function Header({ isMainPage }) {
@@ -21,7 +21,7 @@ function Header({ isMainPage }) {
   return (
     <header className={`header ${ isMainPage && 'header_main-page'}`}>
       <div className={`header__content ${ !isMainPage && 'header__content_movies-page' }`}>
-        <img className="header__logo" src={logo} alt="Логотип" />
+        <Logo />
         {
           isMainPage
             ? (

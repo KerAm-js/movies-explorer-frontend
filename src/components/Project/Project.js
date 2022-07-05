@@ -1,9 +1,7 @@
 import React from "react";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import TextBlock from "../TextBlock/TextBlock";
-
 import './Project.css';
-
 
 function Project() {
   return (

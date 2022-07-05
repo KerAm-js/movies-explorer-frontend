@@ -1,0 +1,19 @@
+.profile__input {
+  background: none;
+  border: none;
+  flex: 1;
+  text-align: right;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: right;
+  color: #FFFFFF;
+  width: 100%;
+}
+
+@media screen and (max-width: 425px) {
+  .profile__input {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}

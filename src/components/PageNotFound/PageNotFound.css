@@ -1,0 +1,20 @@
+@import url('./elements/index.css');
+
+.page-not-found {
+  background-color: #202020;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 60px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .page-not-found {
+    padding: 224px 0 222px;
+  }
+}

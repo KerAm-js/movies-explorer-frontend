@@ -1,0 +1,6 @@
+@media screen and (max-width: 425px) {
+  .header__menu-img {
+    width: 35px;
+    height: 43px;
+  }
+}

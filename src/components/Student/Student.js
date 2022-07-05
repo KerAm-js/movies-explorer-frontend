@@ -1,7 +1,7 @@
 import React from "react";
 import SectionTitle from "../SectionTitle/SectionTitle";
-import student_photo from '../../images/student-photo.png';
-import './Student.css';
+import studentPhotoZoom from '../../images/student-photo-zoom.jpeg';
+import './Student.css'; 
 import arrow from '../../images/link-arrow.svg';
 import { portfolio, studentContacts } from "../../utils/constants";
 import LinksItem from "../LinksItem/LinksItem";
@@ -9,23 +9,22 @@ import LinksItem from "../LinksItem/LinksItem";
 function Student() {
   return (
     <section className="student">
-
         <SectionTitle title="Студент" />
         <div className="student__info">
           <div className="student__text">
             <div className="student__main-text">
               <h3 className="student__name">
-                Виталий
+                Амир
               </h3>
               <p className="student__profession">
-                Фронтенд-разработчик, 30 лет
+                Веб-разработчик, 19 лет
               </p>
               <p className="student__about">
-                Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена 
-                и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. 
-                Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». 
-                После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами 
-                и ушёл с постоянной работы.
+                Родился в Урус-Мартане, Чеченская Республика. Живу в Москве. 
+                Учусь на факультете "Инженерный бизнес и менеджмент" в МГТУ им. Н.Э.Баумана, 4 курс.
+                Начал изучать программирование в начале 2021 года. В августе и сентябре того же года работал
+                над проектом для компании Orgres, а в октябре начал учиться в Практикуме. 
+                Сейчас учусь и подрабатываю на фрилансе.
               </p>
             </div>
             <ul className="student__contacts">
@@ -36,7 +35,7 @@ function Student() {
               }
             </ul>
           </div>
-          <img className="student__photo" src={student_photo} alt="Фотография" />
+          <img className="student__photo" src={studentPhotoZoom} alt="Фотография" />
         </div>
         <p className="student__portfolio">Портфолио</p>
         <ul className="student__projects">
@@ -49,7 +48,6 @@ function Student() {
             ))
           }
         </ul>
-
     </section>
   )
 }

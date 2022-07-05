@@ -1,0 +1,22 @@
+@import url('./elements/index.css');
+
+.form {
+  width: 100%;
+  max-width: 396px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 769px) {
+  .form {
+    justify-content: space-between;
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .form {
+    justify-content: space-between;
+    flex: 1;
+  }
+}
