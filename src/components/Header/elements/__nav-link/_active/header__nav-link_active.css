@@ -1,3 +1,9 @@
 .header__nav-link_active {
   font-weight: 500;
 }
+
+@media screen and (max-width: 768px) {
+  .header__nav-link_active {
+    border-bottom: 2px solid #fff;
+  }
+}

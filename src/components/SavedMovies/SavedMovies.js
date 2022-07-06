@@ -13,7 +13,7 @@ function SavedMovies() {
     <div className="saved-movies">
       <Header />
       <Search />
-      <Cards cards={data} />
+      <Cards cards={data} isSavedMoviesPage={true} />
       <div className="saved__devider" />
       <Footer />
     </div>

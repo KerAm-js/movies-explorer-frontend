@@ -2,6 +2,11 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 18px;
+  margin-right: 16px;
+}
+
+.header__nav-link:last-of-type {
+  margin-right: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -12,7 +17,6 @@
     margin-bottom: 22px;
     border-bottom-width: 2px;
     padding-bottom: 4px;
-    margin-right: 0;
   }
 }
 

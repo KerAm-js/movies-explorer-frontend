@@ -14,7 +14,7 @@ function LogIn() {
           {type: 'password', label: 'Пароль', inputId: 'form-password]'},
         ]}
       />
-      <LinkFooter text="Ещё не зарегистрированы?" link="#" linkTitle="Регистрация" />
+      <LinkFooter text="Ещё не зарегистрированы?" link="/signup" linkTitle="Регистрация" />
     </div>
   )
 }

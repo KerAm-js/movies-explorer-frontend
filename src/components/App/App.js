@@ -6,19 +6,20 @@ import Register from '../Register/Register';
 import LogIn from '../LogIn/LogIn';
 import Profile from '../Profile/Profile';
 import PageNotFound from '../PageNotFound/PageNotFound';
-import { Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <Route path="/" component={Main} />
-      {/* <Main /> */}
-      {/* <Movies /> */}
-      {/* <SavedMovies /> */}
-      {/* <Register /> */}
-      {/* <LogIn /> */}
-      {/* <Profile /> */}
-      {/* <PageNotFound /> */}
+      <Routes>
+        <Route index path="/" element={<Main />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/saved-movies" element={<SavedMovies />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/signin" element={<LogIn />} />
+        <Route path="/signup" element={<Register />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
     </div>
   );
 }

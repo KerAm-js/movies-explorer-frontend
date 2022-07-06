@@ -26,8 +26,8 @@ function Header({ isMainPage }) {
           isMainPage
             ? (
               <div className={`header__auth-links header__auth-links_hidden`}> 
-                <Link to="#" className="header__signup-link" title='Регистрация' />
-                <NavLink to="#">
+                <Link to="/signup" className="header__signup-link" title='Регистрация' />
+                <NavLink to="/signin">
                   <Button className="header__signin-link" title='Войти' />
                 </NavLink>
               </div>
@@ -36,11 +36,27 @@ function Header({ isMainPage }) {
               <>
                 <nav className={`header__nav ${drawerSelector}`}>
                   <div className="header__movies-links">
-                    <Link to="#" className="header__nav-link header__movies-link header__nav-link_active" title='Фильмы' />
-                    <Link to="#" className="header__nav-link header__saved-movies-link" title='Сохранённые фильмы' />
+                    <NavLink 
+                      to="/movies" 
+                      className={({ isActive }) => isActive 
+                        ? "link header__nav-link header__nav-link_active" 
+                        : "link header__nav-link"
+                      }
+                    >
+                      Фильмы
+                    </NavLink>
+                    <NavLink 
+                      to="/saved-movies"
+                      className={({ isActive }) => isActive 
+                        ? "link header__nav-link header__nav-link_active" 
+                        : "link header__nav-link"
+                      }
+                    >
+                      Сохранённые фильмы
+                    </NavLink>
                   </div>
-                  <NavLink to="#">
-                    <Button className="header__profile-link">
+                  <NavLink className="header__profile-link" to="/profile">
+                    <Button className="header__profile-btn">
                       <img className="header__profile-img" src={profile_img} alt="Логотип" />
                       Аккаунт 
                     </Button>

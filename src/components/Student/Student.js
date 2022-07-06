@@ -1,6 +1,6 @@
 import React from "react";
 import SectionTitle from "../SectionTitle/SectionTitle";
-import studentPhotoZoom from '../../images/student-photo-zoom.jpeg';
+import studentPhoto from '../../images/student-photo.jpeg';
 import './Student.css'; 
 import arrow from '../../images/link-arrow.svg';
 import { portfolio, studentContacts } from "../../utils/constants";
@@ -21,10 +21,10 @@ function Student() {
               </p>
               <p className="student__about">
                 Родился в Урус-Мартане, Чеченская Республика. Живу в Москве. 
-                Учусь на факультете "Инженерный бизнес и менеджмент" в МГТУ им. Н.Э.Баумана, 4 курс.
+                Учусь на факультете "Инженерный бизнес и менеджмент" в МГТУ им. Н.Э. Баумана, 4 курс.
                 Начал изучать программирование в начале 2021 года. В августе и сентябре того же года работал
-                над проектом для компании Orgres, а в октябре начал учиться в Практикуме. 
-                Сейчас учусь и подрабатываю на фрилансе.
+                над корпоративным приложением для компании Orgres, а в октябре начал учиться в Практикуме. 
+                Сейчас учусь и подрабатываю на фрилансе. 
               </p>
             </div>
             <ul className="student__contacts">
@@ -35,7 +35,7 @@ function Student() {
               }
             </ul>
           </div>
-          <img className="student__photo" src={studentPhotoZoom} alt="Фотография" />
+          <img className="student__photo" src={studentPhoto} alt="Фотография" />
         </div>
         <p className="student__portfolio">Портфолио</p>
         <ul className="student__projects">

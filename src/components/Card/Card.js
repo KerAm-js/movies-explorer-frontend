@@ -19,7 +19,7 @@ function Card({ title, image, duration, isLiked, isSavedMoviesPage }) {
           }
         </p>
         {
-            isSavedMoviesPage
+            !isSavedMoviesPage
               ? (<Button className="card__like-btn" onClick={() => setLiked(!liked)} >
                   <img className="card__like-img" src={liked ? likeImg : disLikeImg} alt="Нравится" />
                 </Button>)

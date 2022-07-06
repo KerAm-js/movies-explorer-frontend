@@ -2,6 +2,10 @@
   margin-right: 16px;
 }
 
+.header__movies-link:last-of-type {
+  margin-right: 0;
+}
+
 @media screen and (max-width: 768px) {
   .header__movies-link {
     margin-right: 0;

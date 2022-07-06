@@ -2,7 +2,7 @@ import React from "react";
 import Link from "../Link/Link";
 import './PageNotFound.css';
 
-function PageNotFound() {
+function PageNotFound({ history }) {
   return (
     <div className="page-not-found">
       <div className="page-not-found__main">
