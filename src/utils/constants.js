@@ -20,12 +20,12 @@ export const footerLinks = [
 ];
 
 export const cards = [
-  { id: '1', title: '33 слова о дизайне', image: cardImg, duration: '1ч 47м', isLiked: true },
-  { id: '2', title: '33 слова о дизайне', image: cardImg, duration: '1ч 47м', isLiked: true },
-  { id: '3', title: '33 слова о дизайне', image: cardImg, duration: '1ч 47м', isLiked: false },
-  { id: '4', title: '33 слова о дизайне', image: cardImg, duration: '1ч 47м', isLiked: false },
-  { id: '5', title: '33 слова о дизайне', image: cardImg, duration: '1ч 47м', isLiked: true },
-  { id: '6', title: '33 слова о дизайне', image: cardImg, duration: '1ч 47м', isLiked: false },
-  { id: '7', title: '33 слова о дизайне', image: cardImg, duration: '1ч 47м', isLiked: true },
-  { id: '8', title: '33 слова о дизайне', image: cardImg, duration: '1ч 47м', isLiked: false },
+  // { id: '1', title: '33 слова о дизайне', image: cardImg, duration: '1ч 47м', isLiked: true },
+  // { id: '2', title: '33 слова о дизайне', image: cardImg, duration: '1ч 47м', isLiked: true },
+  // { id: '3', title: '33 слова о дизайне', image: cardImg, duration: '1ч 47м', isLiked: false },
+  // { id: '4', title: '33 слова о дизайне', image: cardImg, duration: '1ч 47м', isLiked: false },
+  // { id: '5', title: '33 слова о дизайне', image: cardImg, duration: '1ч 47м', isLiked: true },
+  // { id: '6', title: '33 слова о дизайне', image: cardImg, duration: '1ч 47м', isLiked: false },
+  // { id: '7', title: '33 слова о дизайне', image: cardImg, duration: '1ч 47м', isLiked: true },
+  // { id: '8', title: '33 слова о дизайне', image: cardImg, duration: '1ч 47м', isLiked: false },
 ];

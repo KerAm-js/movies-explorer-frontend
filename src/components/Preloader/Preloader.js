@@ -1,13 +1,14 @@
-import React from "react";
-import Button from "../Button/Button";
-import './Preloader.css';
+import React from 'react'
+import './Preloader.css'
 
 function Preloader() {
-  return (
-    <section className="preloader">
-      <Button className="preloader__btn" title="Ещё" />
-    </section>
-  )
-}
+    return (
+        <div className="preloader">
+            <div className="preloader__container">
+                <span className="preloader__round"></span>
+            </div>
+        </div>
+    )
+};
 
-export default Preloader;
+export default Preloader
