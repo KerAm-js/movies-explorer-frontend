@@ -4,7 +4,7 @@
   line-height: 22px;
   color: #fff;
   max-width: 600px;
-  margin: 0;
+  margin: 0 49px 20px 0;
   padding: 0;
   mix-blend-mode: normal;
 }
@@ -13,6 +13,15 @@
   .student__about {
     font-size: 12px;
     line-height: 18px;
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .student__about {
+    font-size: 12px;
+    line-height: 18px;
+    margin-right: 0;
   }
 }
 
