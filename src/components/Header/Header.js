@@ -28,41 +28,56 @@ function Header({ isMainPage }) {
               <div className={`header__auth-links header__auth-links_hidden`}> 
                 <Link to="/signup" className="header__signup-link" title='Регистрация' />
                 <NavLink to="/signin">
-                  <Button className="header__signin-link" title='Войти' />
+                  <Button type="button" className="header__signin-link" title='Войти' />
                 </NavLink>
               </div>
             )
             : (
               <>
                 <nav className={`header__nav ${drawerSelector}`}>
-                  <div className="header__movies-links">
-                    <NavLink 
-                      to="/movies" 
-                      className={({ isActive }) => isActive 
-                        ? "link header__nav-link header__nav-link_active" 
-                        : "link header__nav-link"
-                      }
-                    >
-                      Фильмы
-                    </NavLink>
-                    <NavLink 
-                      to="/saved-movies"
-                      className={({ isActive }) => isActive 
-                        ? "link header__nav-link header__nav-link_active" 
-                        : "link header__nav-link"
-                      }
-                    >
-                      Сохранённые фильмы
-                    </NavLink>
-                  </div>
+                  <ul className="header__links-list">
+                    <li className="header__link-item">
+                      <NavLink 
+                        to="/" 
+                        className={({ isActive }) => isActive 
+                          ? "link header__nav-link header__nav-link_active" 
+                          : "link header__nav-link header__nav-link_main"
+                        }
+                      >
+                        Главная
+                      </NavLink>
+                    </li>
+                    <li className="header__link-item">
+                      <NavLink 
+                        to="/movies" 
+                        className={({ isActive }) => isActive 
+                          ? "link header__nav-link header__nav-link_active" 
+                          : "link header__nav-link"
+                        }
+                      >
+                        Фильмы
+                      </NavLink>
+                    </li>
+                    <li className="header__link-item">
+                      <NavLink 
+                        to="/saved-movies"
+                        className={({ isActive }) => isActive 
+                          ? "link header__nav-link header__nav-link_active" 
+                          : "link header__nav-link"
+                        }
+                      >
+                        Сохранённые фильмы
+                      </NavLink>
+                    </li>
+                  </ul>
                   <NavLink className="header__profile-link" to="/profile">
-                    <Button className="header__profile-btn">
+                    <Button type="button" className="header__profile-btn">
                       <img className="header__profile-img" src={profile_img} alt="Логотип" />
                       Аккаунт 
                     </Button>
                   </NavLink>
                 </nav>
-                <Button className="header__menu-btn" onClick={toggleDrawer}>
+                <Button type="button" className="header__menu-btn" onClick={toggleDrawer}>
                   <img className="header__menu-img" src={menuBtn} alt="Меню" />
                 </Button>
               </>

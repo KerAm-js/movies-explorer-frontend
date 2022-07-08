@@ -2,11 +2,6 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 18px;
-  margin-right: 16px;
-}
-
-.header__nav-link:last-of-type {
-  margin-right: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -14,15 +9,5 @@
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
-    margin-bottom: 22px;
-    border-bottom-width: 2px;
-    padding-bottom: 4px;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .header__nav-link {
-    margin-bottom: 15px;
-    padding-bottom: 7px;
   }
 }

@@ -1,0 +1,5 @@
+@media screen and (max-width: 425px) {
+  .technologies__section-title {
+    border-color: #000000;
+  }
+}

@@ -14,6 +14,7 @@ function Register() {
           {type: 'email', label: 'E-mail', inputId: 'form-e-mail'},
           {type: 'password', label: 'Пароль', inputId: 'form-password]'},
         ]}
+        submitTitle="Зарегистрироваться"
       />
       <LinkFooter text="Уже зарегистрированы?" link="/signin" linkTitle="Войти" />
     </div>

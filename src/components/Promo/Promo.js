@@ -21,7 +21,7 @@ function Promo() {
           <img className="promo__img" src={promo_img} alt="Глобус web" />
         </div>
         <a href="#project">
-          <Button className="promo__btn" title="Узнать больше"/>
+          <Button type="button" className="promo__btn" title="Узнать больше"/>
         </a>
       </div>
     </section>

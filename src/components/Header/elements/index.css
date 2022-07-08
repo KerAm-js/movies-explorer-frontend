@@ -9,8 +9,9 @@
 @import url('./__menu-img/header__menu-img.css');
 @import url('./__nav-link/header__nav-link.css');
 @import url('./__nav-link/_active/header__nav-link_active.css');
-/* @import url('./__movies-link/header__movies-link.css'); */
-@import url('./__movies-links/header__movies-links.css');
+@import url('./__nav-link/_main/header__nav-link_main.css');
+@import url('./__link-item/header__link-item.css');
+@import url('./__links-list/header__links-list.css');
 @import url('./__saved-movies-link/header__saved-movies-link.css');
 @import url('./__profile-img/header__profile-img.css');
 @import url('./__profile-link/header__profile-link.css');

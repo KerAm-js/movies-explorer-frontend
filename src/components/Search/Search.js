@@ -21,8 +21,8 @@ function Search() {
     <section className="search">
       <form className="search__form">
         <div className="search__input-container">
-          <input type="text" placeholder="Фильм" className="search__input" />
-          <Button className="search__btn" onClick={searchHanlder}>
+          <input required type="text" placeholder="Фильм" className="search__input" />
+          <Button type="submit" className="search__btn" onClick={searchHanlder}>
             <img src={arrow} alt="Стрелка" className="search__img" />
           </Button>
         </div>

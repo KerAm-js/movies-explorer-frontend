@@ -13,6 +13,7 @@ function LogIn() {
           {type: 'email', label: 'E-mail', inputId: 'form-e-mail'},
           {type: 'password', label: 'Пароль', inputId: 'form-password]'},
         ]}
+        submitTitle="Войти"
       />
       <LinkFooter text="Ещё не зарегистрированы?" link="/signup" linkTitle="Регистрация" />
     </div>

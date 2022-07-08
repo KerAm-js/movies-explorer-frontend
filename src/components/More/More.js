@@ -5,7 +5,7 @@ import './More.css';
 function More() {
   return (
     <section className="more">
-      <Button className="more__btn" title="Ещё" />
+      <Button type="submit" className="more__btn" title="Ещё" />
     </section>
   )
 }

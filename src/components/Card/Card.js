@@ -20,10 +20,10 @@ function Card({ title, image, duration, isLiked, isSavedMoviesPage }) {
         </p>
         {
             !isSavedMoviesPage
-              ? (<Button className="card__like-btn" onClick={() => setLiked(!liked)} >
+              ? (<Button type="button" className="card__like-btn" onClick={() => setLiked(!liked)} >
                   <img className="card__like-img" src={liked ? likeImg : disLikeImg} alt="Нравится" />
                 </Button>)
-              : (<Button className="card__like-btn" onClick={() => setLiked(!liked)}>
+              : (<Button type="button" className="card__like-btn" onClick={() => setLiked(!liked)}>
                   <img className="card__like-img" src={removeImg} alt="Нравится" />
                 </Button>)
           }

@@ -13,7 +13,6 @@ function Profile() {
     <div className="profile">
       <Header />
       <h1 className="profile__title">Привет, Амир!</h1>
-      {/* <div></div> */}
       <form className="profile__form">
         <div className="profile__inputs">
           <div className="profile__input-container">
@@ -37,7 +36,11 @@ function Profile() {
             />
           </div>
         </div>
-        <Button className="profile__submit-btn" title="Редактировать" />
+        {
+          <Button type="button" className="profile__submit-btn" title="Редактировать" />
+          // Для сохранения результата будет показана эта кнопка
+          // <Button type="submit" className="profile__submit-btn" title="Сохранить" />
+        }
       </form>
       <Link className="profile__link" title="Выйти из аккаунта" to="#" />
     </div>

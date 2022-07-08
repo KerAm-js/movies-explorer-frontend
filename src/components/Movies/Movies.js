@@ -14,9 +14,9 @@ function Movies() {
       <Header />
       <Search />
       {
-        !cards.length === 0
-          ? <Cards cards={cards} />
-          : <Preloader />
+        cards.length === 0
+          ? <Preloader />
+          : <Cards cards={cards} />
       }
       <More />
       <Footer />
