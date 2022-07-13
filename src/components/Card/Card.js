@@ -3,19 +3,20 @@ import Button from "../Button/Button";
 import likeImg from '../../images/like.svg';
 import disLikeImg from '../../images/dislike.svg';
 import removeImg from '../../images/remove.svg';
+import { BEATFILM_BASE_URL } from "../../utils/constants";
 import './Card.css';
 
-function Card({ title, image, duration, isLiked, isSavedMoviesPage }) {
+function Card({ nameRU, image, duration, isLiked, isSavedMoviesPage }) {
 
   const [liked, setLiked] = useState(isLiked);
 
   return (
     <li className="card">
-      <img src={image} className="card__img" alt="Заставка" />
+      <img src={`${BEATFILM_BASE_URL}${image.url}`} className="card__img" alt="Заставка" />
       <div className="card__info">
         <p className="card__title">
           {
-            title
+            nameRU
           }
         </p>
         {

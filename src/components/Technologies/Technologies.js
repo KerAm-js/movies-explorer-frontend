@@ -1,5 +1,5 @@
 import React from "react";
-import { technologies } from "../../utils/constants";
+import { technologies } from "../../utils/data";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import Technology from "../Technology/Technology";
 import './Technologies.css';

@@ -1,24 +1,29 @@
 import React from "react";
-import { cards } from "../../utils/constants";
 import Cards from "../Cards/Cards";
 import Header from "../Header/Header";
-import Search from "../Search/Search";
 import Footer from "../Footer/Footer";
 import More from "../More/More";
 import Preloader from "../Preloader/Preloader";
 import './Movies.css';
 
-function Movies() {
+function Movies({ movies, searchBlock, isLoaderShown, isMoviesRequested, error, onMoreHandler }) {
+
   return (
     <div className="movies">
       <Header />
-      <Search />
       {
-        cards.length === 0
-          ? <Preloader />
-          : <Cards cards={cards} />
+        searchBlock
       }
-      <More />
+      {
+        !isMoviesRequested 
+          ? null
+          : movies.length > 0 && isLoaderShown
+            ? <Preloader />
+            : <Cards error={error} cards={movies} />
+      }
+      {
+        (movies.length > 0 && isMoviesRequested && !error) ? <More onMoreHandler={onMoreHandler} /> : null
+      }
       <Footer />
     </div>
   )

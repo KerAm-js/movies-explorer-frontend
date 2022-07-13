@@ -1,19 +1,26 @@
 import React from "react";
 import './SavedMovies.css';
 import Cards from "../Cards/Cards";
-import { cards } from "../../utils/constants";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Search from "../Search/Search";
+import Preloader from "../Preloader/Preloader";
 
 
-function SavedMovies() {
-  const data = cards.filter(movie => movie.isLiked);
+function SavedMovies({ movies, searchBlock, isLoaderShown, isMoviesRequested, error }) {
+
+  const data = movies.filter(movie => movie.isLiked);
+
   return (
     <div className="saved-movies">
       <Header />
-      <Search />
-      <Cards cards={data} isSavedMoviesPage={true} />
+      {
+        searchBlock
+      }
+      {
+        isLoaderShown
+          ? <Preloader />
+          : isMoviesRequested && <Cards error={error} cards={data} />
+      }
       <div className="saved__devider" />
       <Footer />
     </div>

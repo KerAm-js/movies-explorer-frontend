@@ -3,7 +3,6 @@ import Button from "../Button/Button";
 import './Checkbox.css';
 
 function Checkbox({ title, isChecked, setChecked }) {
-
   return (
     <div className="checkbox">
       <p className="checkbox__title">{title}</p>

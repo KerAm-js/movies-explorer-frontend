@@ -1,4 +1,6 @@
 .more__btn {
+  margin: 50px 70px 80px;
+  padding: 0;
   border-radius: 5px;
   border: 1px solid #424242;
   min-width: 320px;

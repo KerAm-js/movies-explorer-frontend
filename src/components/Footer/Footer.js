@@ -1,5 +1,5 @@
 import React from "react";
-import { footerLinks } from "../../utils/constants";
+import { footerLinks } from "../../utils/data";
 import LinksItem from "../LinksItem/LinksItem";
 import './Footer.css';
 

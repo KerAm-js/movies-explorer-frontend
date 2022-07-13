@@ -3,7 +3,7 @@ import SectionTitle from "../SectionTitle/SectionTitle";
 import studentPhoto from '../../images/student-photo.jpeg';
 import './Student.css'; 
 import arrow from '../../images/link-arrow.svg';
-import { portfolio, studentContacts } from "../../utils/constants";
+import { portfolio, studentContacts } from "../../utils/data";
 import LinksItem from "../LinksItem/LinksItem";
 
 function Student() {

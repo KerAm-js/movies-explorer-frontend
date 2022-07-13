@@ -5,4 +5,20 @@
   margin: 0;
   background-color: #222222;
   border-radius: 6px;
+  max-width: 364px;
+  max-height: 281px;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    max-width: 339px;
+    max-height: 262px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .card {
+    max-width: 300px;
+    max-height: 237px;
+  }
 }
