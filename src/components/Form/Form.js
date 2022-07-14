@@ -8,8 +8,8 @@ function Form({ inputs, submitTitle }) {
     <form className="form">
       <div className="form__inputs-container">
         {
-          inputs.map(({ type, label, error, inputId, required }, index) => (
-            <Input required={required} key={index} type={type} label={label} inputId={inputId} error={error} />
+          inputs.map(({ type, label, error, inputId, required, ...args }, index) => (
+            <Input required={required} key={index} type={type} label={label} inputId={inputId} error={error} {...args} />
           ))
         }
       </div>

@@ -5,6 +5,7 @@
   margin: 0;
   background-color: #222222;
   border-radius: 6px;
+  overflow: hidden;
   max-width: 364px;
   max-height: 281px;
 }

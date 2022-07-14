@@ -11,12 +11,15 @@ import { Routes, Route } from 'react-router-dom';
 import { getMoviesFromBF } from '../../utils/MoviesApi';
 import Search from '../Search/Search';
 import { IS_SHORT_FILM, IS_SHORT_FILM_SAVED, MOVIES, REQUEST_TEXT, REQUEST_TEXT_SAVED,  } from '../../utils/localStorageConstants';
-import { errorMessage } from '../../utils/constants';
+import { errorMessage, nameInvalidMessage, nameRegex } from '../../utils/constants';
 import { getUploadMoviesCount } from '../../utils/utils';
+import { addMovie, removeMovie } from '../../utils/MainApi';
+import { useInputValidator } from '../Validator/InputValidator';
 
 function App() {
 
   const [movies, setMovies] = useState(JSON.parse(localStorage.getItem(MOVIES)) || []);
+  const [name, nameError, isNameValid, onNameChange] = useInputValidator(nameRegex, nameInvalidMessage);
   const [searchText, setSearchText] = useState(localStorage.getItem(REQUEST_TEXT) || '');
   const [isShortFilm, setIsShortFilm] = useState(Boolean(localStorage.getItem(IS_SHORT_FILM)) || false);
   const [isSavedShortFilm, setIsSavedShortFilm] = useState(Boolean(localStorage.getItem(IS_SHORT_FILM_SAVED)) || false);
@@ -27,7 +30,7 @@ function App() {
   const [error, setError] = useState('');
 
   const onSearchTextChange = evt => setSearchText(evt.target.value);
-  const onSearchSavedTextChange = evt => setSearchSavedText(evt.target.value);
+  const onSearchSavedTextChange = evt => setSearchSavedText(evt.target.value)
 
   const setMoviesInitial = (data) => {
     setMovies(data.slice(0, getUploadMoviesCount(window.innerWidth, { isInitial: true })));
@@ -37,6 +40,7 @@ function App() {
   const toggleIsSavedShortFilm = () => setIsSavedShortFilm(!isSavedShortFilm)
 
   const getSearchHandler = (isSavedSearch) => evt => {
+    const storedMovies = JSON.parse(localStorage.getItem(MOVIES))
     evt.preventDefault();
     setIsLoaderShown(true);
     if (!isMoviesRequested) {
@@ -49,7 +53,7 @@ function App() {
       localStorage.setItem(REQUEST_TEXT, searchText);
       localStorage.setItem(IS_SHORT_FILM, isShortFilm ? '1' : '');
     }
-    if (!JSON.parse(localStorage.getItem(MOVIES))) {
+    if (!storedMovies || storedMovies.length === 0) {
       getMoviesFromBF()
         .then(data => {
           setError('');
@@ -62,9 +66,21 @@ function App() {
         })
         .finally(() => setIsLoaderShown(false));
     } else {
+      setMoviesInitial(storedMovies);
       setIsLoaderShown(false)
     }
   }
+
+  const onLikeCardHandler = movie => {
+    addMovie(movie);
+  }
+
+  const onDisLikeCardHanlder = (id, movieId) => {
+    removeMovie(id, movieId);
+  }
+
+  //использовал метод удобной проброски пропсов в глубокий компонент, рекомендованный разработчиками React
+  //так как пропсов тут много
 
   const getSearchBlock = ({ isSavedSearch }) => {
     if (isSavedSearch) {
@@ -115,6 +131,7 @@ function App() {
               isMoviesRequested={isMoviesRequested}
               error={error}
               onMoreHandler={onMoreHandler}
+              onLikeCardHandler={onLikeCardHandler}
             />
           } 
         />
@@ -127,12 +144,23 @@ function App() {
               isLoaderShown={isLoaderShown}
               isMoviesRequested={isMoviesRequested}
               error={error}
+              onDisLikeCardHanlder={onDisLikeCardHanlder}
             />
           } 
         />
         <Route path="/profile" element={<Profile />} />
         <Route path="/signin" element={<LogIn />} />
-        <Route path="/signup" element={<Register />} />
+        <Route 
+          path="/signup" 
+          element={
+            <Register 
+              name={name} 
+              nameError={nameError} 
+              isNameValid={isNameValid} 
+              onNameChange={onNameChange} 
+            />
+          } 
+        />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>

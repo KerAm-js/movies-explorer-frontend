@@ -2,6 +2,11 @@
   width: 100%;
   height: 100%;
   max-height: 203px;
+  transition: opacity .2s linear;
+}
+
+.card__img:hover {
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 768px) {

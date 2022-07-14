@@ -19,7 +19,7 @@ function SavedMovies({ movies, searchBlock, isLoaderShown, isMoviesRequested, er
       {
         isLoaderShown
           ? <Preloader />
-          : isMoviesRequested && <Cards error={error} cards={data} />
+          : isMoviesRequested && <Cards onDisLikeCardHanlder={onDisLikeCardHanlder} error={error} cards={data} />
       }
       <div className="saved__devider" />
       <Footer />

@@ -14,3 +14,9 @@ export const getUploadMoviesCount = (width, { isInitial }) => {
   }
   return isInitial ? 12 : 3;
 }
+
+export const getDurationString = duration => {
+  const hours = Math.ceil(duration / 60);
+  const minutes = duration % 60;
+  return hours + 'ч' + ' ' + minutes + 'м'
+}
