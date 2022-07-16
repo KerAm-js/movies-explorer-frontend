@@ -12,3 +12,7 @@
   line-height: 16px;
   color: #fff;
 }
+
+.input__element:focus {
+  outline: none;
+}

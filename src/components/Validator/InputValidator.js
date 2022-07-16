@@ -6,21 +6,28 @@ export function useInputValidator(pattern, errorMessage = 'Некорректн�
     const [error, setError] = useState('');
     const [isValid, setIsValid] = useState(false);
 
+    const setDefaults = () => {
+        setValue('');
+        setError('');
+        setIsValid('');
+    }
+
     const onChange = evt => {
         const target = evt.target;
-        const text = target.value;
+        const value = target.value;
         const message = target.validationMessage;
         const valid = target.validity.valid;
 
-        setValue(text);
-        setError(target.validationMessage);
-        setIsValid(target.validity.valid);
+        setValue(value);
+        setError(message);
+        setIsValid(valid);
         
-        if (valid && !message && pattern && !pattern.test(text) ) {
+        if (valid && !message && pattern && !pattern.test(value) ) {
+            console.log('ok')
             setError(errorMessage);
             setIsValid(false);
         }
     }
 
-    return [value, error, isValid, onChange];
+    return [value, error, isValid, onChange, setDefaults];
 }

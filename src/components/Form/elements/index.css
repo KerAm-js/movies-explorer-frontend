@@ -1,2 +1,5 @@
 @import url('./__submit-btn/form__submit-btn.css');
 @import url('./__inputs-container/form__inputs-container.css');
+@import url('./__submit-btn/_disabled/form__submit-btn_disabled.css');
+@import url('./__error/form__error.css');
+@import url('./__submit-container/form__submit-container.css');

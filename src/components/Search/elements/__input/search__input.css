@@ -9,6 +9,10 @@
   flex: 1;
 }
 
+.search__input:focus {
+  outline: none;
+}
+
 @media screen and (max-width: 425px) {
   .search__input {
     font-size: 14px;

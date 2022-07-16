@@ -6,7 +6,7 @@ import More from "../More/More";
 import Preloader from "../Preloader/Preloader";
 import './Movies.css';
 
-function Movies({ movies, searchBlock, isLoaderShown, isMoviesRequested, error, onMoreHandler, onLikeCardHandler, onDisLikeCardHanlder }) {
+function Movies({ movies, searchBlock, isLoaderShown, isMoviesRequested, error, onMoreHandler, onLikeCardHandler }) {
 
   return (
     <div className="movies">
