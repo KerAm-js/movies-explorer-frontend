@@ -6,7 +6,7 @@ import More from "../More/More";
 import Preloader from "../Preloader/Preloader";
 import './Movies.css';
 
-function Movies({ movies, searchBlock, isLoaderShown, isMoviesRequested, error, onMoreHandler, onLikeCardHandler }) {
+function Movies({ movies, searchBlock, isLoaderShown, isMoviesRequested, error, onMoreHandler, onLikeCardHandler, onDisLikeCardHanlder }) {
 
   return (
     <div className="movies">
@@ -17,9 +17,14 @@ function Movies({ movies, searchBlock, isLoaderShown, isMoviesRequested, error, 
       {
         !isMoviesRequested 
           ? null
-          : movies.length > 0 && isLoaderShown
+          : isLoaderShown
             ? <Preloader />
-            : <Cards error={error} cards={movies} onLikeCardHandler={onLikeCardHandler} />
+            : <Cards 
+                error={error}
+                cards={movies} 
+                onLikeCardHandler={onLikeCardHandler} 
+                onDisLikeCardHanlder={onDisLikeCardHanlder} 
+              />
       }
       {
         (movies.length > 0 && isMoviesRequested && !error) ? <More onMoreHandler={onMoreHandler} /> : null

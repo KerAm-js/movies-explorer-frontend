@@ -1,4 +1,5 @@
 import React from "react";
+import { TOKEN } from "../../utils/localStorageConstants";
 import Card from "../Card/Card";
 import './Cards.css';
 
@@ -17,8 +18,8 @@ function Cards({ cards, isSavedMoviesPage, error, onLikeCardHandler, onDisLikeCa
                     cards.map((card) => (
                       <Card 
                         key={card.id} 
-                        onLikeCardHandler={onLikeCardHandler ? () => onLikeCardHandler(card) : null} 
-                        onDisLikeCardHanlder={onDisLikeCardHanlder ? () => onDisLikeCardHanlder(card.id, card.movieId) : null} 
+                        onLikeCardHandler={onLikeCardHandler ? () => onLikeCardHandler({ movie: card }) : null} 
+                        onDisLikeCardHanlder={() => onDisLikeCardHanlder({id: card.savedId, movieId: card.id})} 
                         isSavedMoviesPage={isSavedMoviesPage} 
                         {...card} 
                       />))
