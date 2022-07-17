@@ -1,0 +1,8 @@
+.profile__submit-btn_disabled {
+  opacity: 0.5;
+  cursor: initial;
+}
+
+.profile__submit-btn_disabled:hover {
+  opacity: 0.5;
+}

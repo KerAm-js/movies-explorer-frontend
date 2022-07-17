@@ -66,3 +66,14 @@ export const removeMovie = ({id, token}) => {
     },
   }).then(res => checkResponse(res))
 }
+
+export const updateUser = ({ email, name, token }) => {
+  return fetch(`${API_BASE_URL}/users/me`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({ email, name })
+  }).then(res => checkResponse(res))
+}

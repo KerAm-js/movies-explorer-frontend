@@ -49,9 +49,9 @@ function App() {
 
   //register form
   const [searchError, setSearchError] = useState("");
-  const [name, nameError, isNameValid, onNameChange, setNameDefaults] = useInputValidator(nameRegex, nameInvalidMessage);
-  const [email, emailError, isEmailValid, onEmailChange, setEmailDefaults] = useInputValidator();
-  const [password, passwordError, isPasswordValid, onPasswordChange, setPasswordDefaults] =useInputValidator();
+  const [name, nameError, isNameValid, onNameChange, setNameDefaults] = useInputValidator({pattern: nameRegex, errorMessage: nameInvalidMessage});
+  const [email, emailError, isEmailValid, onEmailChange, setEmailDefaults] = useInputValidator({});
+  const [password, passwordError, isPasswordValid, onPasswordChange, setPasswordDefaults] =useInputValidator({});
   const [isRegisterFormValid, setIsRegisterFormValid] = useState(false);
   const [registerFormError, setRegisterFormError] = useState("");
 
@@ -64,8 +64,8 @@ function App() {
   }
 
   //login form
-  const [loginEmail, loginEmailError, isLoginEmailValid, onLoginEmailChange, setLoginEmailDefaults] = useInputValidator();
-  const [loginPassword, loginPasswordError, isLoginPasswordValid, onLoginPasswordChange, setLoginPasswordDefaults] = useInputValidator();
+  const [loginEmail, loginEmailError, isLoginEmailValid, onLoginEmailChange, setLoginEmailDefaults] = useInputValidator({});
+  const [loginPassword, loginPasswordError, isLoginPasswordValid, onLoginPasswordChange, setLoginPasswordDefaults] = useInputValidator({});
   const [isLoginFormValid, setIsLoginFormValid] = useState(false);
   const [loginFormError, setLoginFormError] = useState('');
 
@@ -364,7 +364,7 @@ function App() {
   };
 
   return (
-    <UserContext.Provider value={user}>
+    <UserContext.Provider value={{user, setUser}}>
       <div className="App">
         <Routes>
           <Route index path="/" element={<Main />} />

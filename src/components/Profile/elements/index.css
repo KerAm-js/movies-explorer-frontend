@@ -5,5 +5,9 @@
 @import url('./__input/profile__input.css');
 @import url('./__inputs/profile__inputs.css');
 @import url('./__link/profile__link.css');
+@import url('./__message/profile__message.css');
+@import url('./__message/_success/profile__message_success.css');
+@import url('./__submit-container/profile__submit-container.css');
 @import url('./__submit-btn/profile__submit-btn.css');
+@import url('./__submit-btn/_disabled/profile__submit-btn_disabled.css');
 @import url('./__title/profile__title.css');

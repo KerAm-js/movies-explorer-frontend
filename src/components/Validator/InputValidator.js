@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export function useInputValidator(pattern, errorMessage = 'Некорректные данные') {
+export function useInputValidator({pattern, initialValue = '', errorMessage = 'Некорректные данные'}) {
 
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(initialValue);
   const [error, setError] = useState('');
-  const [isValid, setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(initialValue ? true : false);
 
   const setDefaults = () => {
     setValue('');
@@ -22,7 +22,7 @@ export function useInputValidator(pattern, errorMessage = 'Некорректн�
     setError(message);
     setIsValid(valid);
     
-    if (valid && !message && pattern && !pattern.test(value) ) {
+    if (valid && !message && pattern && !pattern.test(value)) {
       setError(errorMessage);
       setIsValid(false);
     }
