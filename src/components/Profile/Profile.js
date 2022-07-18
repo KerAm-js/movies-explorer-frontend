@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { nameInvalidMessage, nameRegex, userDataUpdated, userDataUpdateError, userEmailConflictError } from "../../utils/constants";
 import { TOKEN } from "../../utils/localStorageConstants";
@@ -13,14 +13,14 @@ function Profile() {
 
   const {user, setUser} = useContext(UserContext);
 
-  const [email, emailError, isEmailValid, onEmailChange, setEmailDefaults] = useInputValidator({ initialValue: user.email });
-  const [name, nameError, isNameValid, onNameChange, setNameDefaults] = useInputValidator({ initialValue: user.name, pattern: nameRegex, errorMessage: nameInvalidMessage});
+  const [email, emailError, isEmailValid, onEmailChange] = useInputValidator({ initialValue: user.email });
+  const [name, nameError, isNameValid, onNameChange] = useInputValidator({ initialValue: user.name, pattern: nameRegex, errorMessage: nameInvalidMessage});
   const [isFormChanged, setIsFormChanged] = useState(false);
   const [formMessage, setFormMessage] = useState('');
 
   const token = localStorage.getItem(TOKEN);
 
-  const checkIsFormChanged = () => {
+  const checkIsFormChanged = useCallback(() => {
     const isChanged = (email !== user.email) || (name !== user.name);
     if (isChanged) {
       if (formMessage === userDataUpdated) {
@@ -30,7 +30,7 @@ function Profile() {
       return;
     }
     setIsFormChanged(false);
-  }
+  }, [email, name, user.name, user.email, formMessage])
 
   const onSubmit = evt => {
     evt.preventDefault();
@@ -60,7 +60,7 @@ function Profile() {
     } else {
       setFormMessage('');
     }
-  }, [email, name]);
+  }, [checkIsFormChanged, emailError, formMessage, isEmailValid, isNameValid, nameError,]);
 
   return (
     <div className="profile">
