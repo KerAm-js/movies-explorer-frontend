@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
@@ -7,8 +7,10 @@ import Register from "../Register/Register";
 import LogIn from "../LogIn/LogIn";
 import Profile from "../Profile/Profile";
 import PageNotFound from "../PageNotFound/PageNotFound";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
+import { TOKEN } from "../../utils/localStorageConstants";
+import { getUserInfo } from "../../utils/MainApi";
 
 
 function App() {
@@ -18,26 +20,48 @@ function App() {
     name: ""
   });
 
+  useEffect(() => {
+    const token = localStorage.getItem(TOKEN);
+    if (token) {
+      getUserInfo({ token })
+        .then(res => {
+          const { email, name } = res;
+          setUser({ email, name });
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
+  }, [])
+
   return (
     <UserContext.Provider value={{user, setUser}}>
       <div className="App">
         <Routes>
           <Route index path="/" element={<Main />} />
-          <Route
+          <Route 
             path="/movies"
-            element={<Movies />}
-          />
-          <Route
-            path="/saved-movies"
             element={
-              <SavedMovies />
+              user.email && user.name 
+                ? <Movies />
+                : <Navigate to="/signin" />
             }
           />
           <Route 
-            path="/profile" 
+            path="/saved-movies"
             element={
-              <Profile />
-            } 
+              user.email && user.name  
+                ? <SavedMovies />
+                : <Navigate to="/signin" />
+            }
+          />
+          <Route 
+            path="/profile"
+            element={
+              user.email && user.name  
+                ? <Profile/>
+                : <Navigate to="/signin" />
+            }
           />
           <Route 
             path="/signin" 
