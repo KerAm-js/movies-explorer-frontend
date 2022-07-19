@@ -216,22 +216,26 @@ function App() {
     const token = localStorage.getItem(TOKEN);
     const storedSavedMovies = localStorage.getItem(SAVED_MOVIES);
     if (token) {
-      getUserInfo({ token })
-        .then(res => {
-          const { email, name } = res;
-          setUser({ email, name });
-        })
-        .catch(err => {
-          console.log(err);
-        })
-      getSavedMovies({ token })
-        .then(res => {
-          localStorage.setItem(SAVED_MOVIES, JSON.stringify(res));
-        })
-        .catch(err => {
-          console.log(err);
-          localStorage.setItem(SAVED_MOVIES, JSON.stringify([]));
-        })
+      if (!user || (!user.email && !user.name)) {
+        getUserInfo({ token })
+          .then(res => {
+            const { email, name } = res;
+            setUser({ email, name });
+          })
+          .catch(err => {
+            console.log(err);
+          })
+      }
+      if (!storedSavedMovies || storedSavedMovies.length === 0) {
+        getSavedMovies({ token })
+          .then(res => {
+            localStorage.setItem(SAVED_MOVIES, JSON.stringify(res));
+          })
+          .catch(err => {
+            console.log(err);
+            localStorage.setItem(SAVED_MOVIES, JSON.stringify([]));
+          })
+      }
     }
   // eslint-disable-next-line
   }, [user])
