@@ -16,7 +16,6 @@ import { getMovies } from "../../utils/MoviesApi";
 
 import { errorMessage } from "../../utils/constants";
 
-
 function App() {
 
   const [user, setUser] = useState({
@@ -84,7 +83,7 @@ function App() {
     evt.preventDefault();
 
     const storedMovies = JSON.parse(localStorage.getItem(MOVIES));
-    setIsLoaderShown(!storedMovies);
+    setIsLoaderShown(!storedMovies || storedMovies.length === 0);
 
     if (!isMoviesRequested) {
       setIsMoviesRequested(true);
@@ -214,7 +213,6 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem(TOKEN);
-    const storedSavedMovies = localStorage.getItem(SAVED_MOVIES);
     if (token) {
       if (!user || (!user.email && !user.name)) {
         getUserInfo({ token })
@@ -226,16 +224,14 @@ function App() {
             console.log(err);
           })
       }
-      if (!storedSavedMovies || storedSavedMovies.length === 0) {
-        getSavedMovies({ token })
-          .then(res => {
-            localStorage.setItem(SAVED_MOVIES, JSON.stringify(res));
-          })
-          .catch(err => {
-            console.log(err);
-            localStorage.setItem(SAVED_MOVIES, JSON.stringify([]));
-          })
-      }
+      getSavedMovies({ token })
+        .then(res => {
+          localStorage.setItem(SAVED_MOVIES, JSON.stringify(res));
+        })
+        .catch(err => {
+          console.log(err);
+          localStorage.setItem(SAVED_MOVIES, JSON.stringify([]));
+        })
     }
   // eslint-disable-next-line
   }, [user])
