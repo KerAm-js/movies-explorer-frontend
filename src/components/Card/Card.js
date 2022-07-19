@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import likeImg from '../../images/like.svg';
 import disLikeImg from '../../images/dislike.svg';
@@ -52,7 +52,7 @@ function Card({ nameRU, image, duration, isSavedMoviesPage, trailerLink, onLikeC
               ? (<Button type="button" className="card__like-btn" onClick={liked ? onDisLike : onLike} >
                   <img className="card__like-img" src={liked ? likeImg : disLikeImg} alt="Нравится" />
                 </Button>)
-              : (<Button type="button" className="card__like-btn" onClick={onDisLike}>
+              : (<Button type="button" className="card__like-btn" onClick={onDisLikeCardHanlder}>
                   <img className="card__like-img" src={removeImg} alt="Нравится" />
                 </Button>)
           }

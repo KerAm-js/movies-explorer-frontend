@@ -20,7 +20,7 @@ function Cards({ cards, isSavedMoviesPage, error, onLikeCardHandler, onDisLikeCa
                         onLikeCardHandler={onLikeCardHandler ? () => onLikeCardHandler({ movie: card }) : null} 
                         onDisLikeCardHanlder={
                           isSavedMoviesPage
-                            ? () => onDisLikeCardHanlder({_id: card._id})
+                            ? () => onDisLikeCardHanlder({_id: card._id, movieId: card.movieId})
                             : () => onDisLikeCardHanlder({id: card.savedId, movieId: card.id})
                         } 
                         isSavedMoviesPage={isSavedMoviesPage} 

@@ -10,53 +10,28 @@ import { getSavedMovies, removeMovie } from "../../utils/MainApi";
 import { serverError, submitErrorMessage } from "../../utils/constants";
 
 
-function SavedMovies() {
-
-  const [savedMovies, setSavedMovies] = useState([]);
-  const [isSavedShortFilm, setIsSavedShortFilm] = useState(Boolean(localStorage.getItem(IS_SHORT_FILM_SAVED)) || false);
-  const [serachSavedText, setSearchSavedText] = useState(localStorage.getItem(REQUEST_TEXT_SAVED) || "");
-  const [isLoaderShown, setIsLoaderShown] = useState(false);
-  const [isMoviesRequested, setIsMoviesRequested] = useState(false);
-  const [searchError, setSearchError] = useState("");
-
-  const onSearchSavedTextChange = (evt) => setSearchSavedText(evt.target.value);
-  const toggleIsSavedShortFilm = () => setIsSavedShortFilm(!isSavedShortFilm);
+function SavedMovies({
+  setSearchError,
+  searchSavedMovies,
+  onSearchSavedTextChange,
+  searchSavedText,
+  isSavedShortFilm,
+  toggleIsSavedShortFilm,
+  isMoviesRequested,
+  onDisLikeCardHanlder,
+  searchError,
+  savedMovies,
+  setSavedMovies,
+  setMoviesInitial,
+}) {
 
   const token = localStorage.getItem(TOKEN);
-
-  const searchSavedMovies = evt => {
-    if (evt) {
-      evt.preventDefault();
-    }
-
-    if (!isMoviesRequested) {
-      setIsMoviesRequested(true);
-    }
-
-    localStorage.setItem(REQUEST_TEXT_SAVED, serachSavedText);
-    localStorage.setItem(IS_SHORT_FILM_SAVED, isSavedShortFilm ? "1" : "");
-
-    setSavedMovies(JSON.parse(localStorage.getItem(SAVED_MOVIES)) || []);
-  }
-
-  const onDisLikeCardHanlder = ({ _id }) => {
-    const oldMovies = [...savedMovies];
-    const newMovies = savedMovies.filter(movie => movie._id !== _id );
-    console.log(newMovies);
-    localStorage.setItem(SAVED_MOVIES, JSON.stringify(newMovies));
-    setSavedMovies(newMovies);
-
-    return removeMovie({ id: _id, token }).catch(err => {
-      console.log(err);
-      localStorage.setItem(SAVED_MOVIES, JSON.stringify(oldMovies));
-      setSavedMovies(oldMovies);
-    })
-  }
 
   useEffect(() => {
     getSavedMovies({ token })
       .then(res => {
         localStorage.setItem(SAVED_MOVIES, JSON.stringify(res));
+        setMoviesInitial({ data: res, setter: setSavedMovies });
       })
       .catch(err => {
         console.log(err);
@@ -65,7 +40,6 @@ function SavedMovies() {
         }
         setSearchError(submitErrorMessage);
       })
-      .finally(() => setIsLoaderShown(false));
   // eslint-disable-next-line
   }, [])
 
@@ -75,14 +49,12 @@ function SavedMovies() {
       <Search
         onSubmit={searchSavedMovies}
         onChange={onSearchSavedTextChange}
-        text={serachSavedText}
+        text={searchSavedText}
         isChecked={isSavedShortFilm}
         setChecked={toggleIsSavedShortFilm}
       />
       {
-        isLoaderShown
-          ? <Preloader />
-          : isMoviesRequested && <Cards isSavedMoviesPage={true} onDisLikeCardHanlder={onDisLikeCardHanlder} error={searchError} cards={savedMovies} />
+        isMoviesRequested && <Cards isSavedMoviesPage={true} onDisLikeCardHanlder={onDisLikeCardHanlder} error={searchError} cards={savedMovies} />
       }
       <div className="saved__devider" />
       <Footer />
