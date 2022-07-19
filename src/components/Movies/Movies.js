@@ -86,10 +86,10 @@ function Movies() {
     if (evt) {
       evt.preventDefault();
     }
-    
+
     const storedMovies = JSON.parse(localStorage.getItem(MOVIES));
     setIsLoaderShown(!storedMovies);
-    
+
     if (!isMoviesRequested) {
       setIsMoviesRequested(true);
     }
@@ -115,10 +115,16 @@ function Movies() {
         .finally(() => setIsLoaderShown(false));
         return;
     } 
-    setMoviesInitial(storedMovies);
-    setSearchError('');
-    setIsLoaderShown(false);
-
+    setLikesToSearchedMovies(storedMovies)
+      .then(updatedMovies => {
+        setMoviesInitial(updatedMovies);
+        setSearchError('');
+      })
+      .catch((err) => {
+        console.log(err);
+        setSearchError(errorMessage);
+      })
+      .finally(() => setIsLoaderShown(false));
   }
 
   const onLikeCardHandler = ({ movie }) => {
@@ -134,7 +140,7 @@ function Movies() {
     return addMovie({ movie: savedMovie, token }).then(svdMovie => {
       const storedMovies = JSON.parse(localStorage.getItem(MOVIES));
       const likedMovie = storedMovies.find(movie => svdMovie.movieId === movie.id);
-      
+
       likedMovie.isLiked = true;
       likedMovie.savedId = svdMovie._id;
 
@@ -169,6 +175,18 @@ function Movies() {
     window.addEventListener("resize", onWidthChange);
     return () => window.removeEventListener("resize", onWidthChange);
   });
+
+  useEffect(() => {
+    const storedMovies = JSON.parse(localStorage.getItem(MOVIES));
+    setLikesToSearchedMovies(storedMovies)
+      .then(updatedMovies => {
+        setMoviesInitial(updatedMovies);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  // eslint-disable-next-line
+  }, [])
 
   return (
     <div className="movies">

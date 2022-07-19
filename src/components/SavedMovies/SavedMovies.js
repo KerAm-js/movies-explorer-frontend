@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './SavedMovies.css';
 import Cards from "../Cards/Cards";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Preloader from "../Preloader/Preloader";
 import Search from "../Search/Search";
-import { IS_SHORT_FILM_SAVED, REQUEST_TEXT_SAVED, TOKEN } from "../../utils/localStorageConstants";
+import { IS_SHORT_FILM_SAVED, REQUEST_TEXT_SAVED, SAVED_MOVIES, TOKEN } from "../../utils/localStorageConstants";
 import { getSavedMovies, removeMovie } from "../../utils/MainApi";
 import { serverError, submitErrorMessage } from "../../utils/constants";
 
@@ -29,8 +29,6 @@ function SavedMovies() {
       evt.preventDefault();
     }
 
-    setIsLoaderShown(true);
-
     if (!isMoviesRequested) {
       setIsMoviesRequested(true);
     }
@@ -38,9 +36,27 @@ function SavedMovies() {
     localStorage.setItem(REQUEST_TEXT_SAVED, serachSavedText);
     localStorage.setItem(IS_SHORT_FILM_SAVED, isSavedShortFilm ? "1" : "");
 
+    setSavedMovies(JSON.parse(localStorage.getItem(SAVED_MOVIES)) || []);
+  }
+
+  const onDisLikeCardHanlder = ({ _id }) => {
+    const oldMovies = [...savedMovies];
+    const newMovies = savedMovies.filter(movie => movie._id !== _id );
+    console.log(newMovies);
+    localStorage.setItem(SAVED_MOVIES, JSON.stringify(newMovies));
+    setSavedMovies(newMovies);
+
+    return removeMovie({ id: _id, token }).catch(err => {
+      console.log(err);
+      localStorage.setItem(SAVED_MOVIES, JSON.stringify(oldMovies));
+      setSavedMovies(oldMovies);
+    })
+  }
+
+  useEffect(() => {
     getSavedMovies({ token })
       .then(res => {
-        setSavedMovies(res);
+        localStorage.setItem(SAVED_MOVIES, JSON.stringify(res));
       })
       .catch(err => {
         console.log(err);
@@ -50,11 +66,8 @@ function SavedMovies() {
         setSearchError(submitErrorMessage);
       })
       .finally(() => setIsLoaderShown(false));
-  }
-
-  const onDisLikeCardHanlder = ({ id }) => {
-    return removeMovie({ id, token })
-  }
+  // eslint-disable-next-line
+  }, [])
 
   return (
     <div className="saved-movies">
@@ -69,7 +82,7 @@ function SavedMovies() {
       {
         isLoaderShown
           ? <Preloader />
-          : isMoviesRequested && <Cards onDisLikeCardHanlder={onDisLikeCardHanlder} error={searchError} cards={savedMovies} />
+          : isMoviesRequested && <Cards isSavedMoviesPage={true} onDisLikeCardHanlder={onDisLikeCardHanlder} error={searchError} cards={savedMovies} />
       }
       <div className="saved__devider" />
       <Footer />

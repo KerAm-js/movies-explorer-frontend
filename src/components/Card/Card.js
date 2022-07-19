@@ -34,10 +34,12 @@ function Card({ nameRU, image, duration, isSavedMoviesPage, trailerLink, onLikeC
       })
   }
 
+  const imageUrl = isSavedMoviesPage ? image : `${BEATFILM_BASE_URL}${image.url}`;
+
   return (
     <li className="card">
       <a target="_blank" rel="noreferrer" href={trailerLink} className="card__trailer-link">
-        <img src={`${BEATFILM_BASE_URL}${image.url}`} className="card__img" alt="Заставка" />
+        <img src={imageUrl} className="card__img" alt="Заставка" />
       </a>
       <div className="card__info">
         <p className="card__title">

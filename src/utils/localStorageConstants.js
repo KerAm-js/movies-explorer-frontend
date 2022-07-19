@@ -1,4 +1,5 @@
 export const MOVIES = 'movies';
+export const SAVED_MOVIES = 'savedMovies';
 export const REQUEST_TEXT = 'requestText';
 export const REQUEST_TEXT_SAVED = 'requestTextSaved';
 export const IS_SHORT_FILM = 'isShortFilm';
