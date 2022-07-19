@@ -27,6 +27,7 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [isLoaderShown, setIsLoaderShown] = useState(false);
   const [uploadMoviesCount, setUploadMoviesCount] = useState(getUploadMoviesCount(window.innerWidth, { isInitial: false }));
+  const [uploadedMoviesCount, setUploadedMoviesCount] = useState(0);
   const [isMoviesRequested, setIsMoviesRequested] = useState(false);
   const [searchText, setSearchText] = useState(localStorage.getItem(REQUEST_TEXT) || "");
   const [isShortFilm, setIsShortFilm] = useState(Boolean(localStorage.getItem(IS_SHORT_FILM)) || false);
@@ -60,13 +61,13 @@ function App() {
   }
 
   //для первой подгрузки фильмов
-  const setMoviesInitial = ({ data, setter }) => {
-    setter(
-      data.slice(
-        0,
-        getUploadMoviesCount(window.innerWidth, { isInitial: true })
-      )
-    );
+  const setMoviesInitial = ({ data, setter, uploadedCountSetter }) => {
+    const count = getUploadMoviesCount(window.innerWidth, { isInitial: true })
+    setter(data.slice(0, count));
+
+    if (uploadedCountSetter) {
+      uploadedCountSetter(count);
+    }
   };
 
   //нажатие кнопки "ещё"
@@ -76,7 +77,12 @@ function App() {
       movies.length + uploadMoviesCount
     );
     setMovies((prev) => [...prev, ...data]);
+    setUploadedMoviesCount(uploadedMoviesCount + uploadMoviesCount);
   };
+
+  const renderCurrentMovies = data => {
+    setMovies(data.slice(0, uploadedMoviesCount));
+  }
 
   const searchAllMovies = evt => {
     
@@ -96,7 +102,7 @@ function App() {
       getMovies()
         .then((data) => {
           const updatedMovies = setLikesToSearchedMovies(data);
-          setMoviesInitial({data: updatedMovies, setter: setMovies});
+          setMoviesInitial({data: updatedMovies, setter: setMovies, uploadedCountSetter: setUploadedMoviesCount});
           localStorage.setItem(MOVIES, JSON.stringify(updatedMovies));
           setSearchError("");
         })
@@ -108,7 +114,7 @@ function App() {
       return;
     } 
     const updatedMovies = setLikesToSearchedMovies(storedMovies);
-    setMoviesInitial({data: updatedMovies, setter: setMovies});
+    setMoviesInitial({data: updatedMovies, setter: setMovies,  uploadedCountSetter: setUploadedMoviesCount});
     setSearchError('');
   }
 
@@ -128,7 +134,7 @@ function App() {
 
         localStorage.setItem(MOVIES, JSON.stringify(storedMovies));
         localStorage.setItem(SAVED_MOVIES, JSON.stringify([ ...storedSavedMovies, svdMovie ]));
-        setMoviesInitial({data: storedMovies, setter: setMovies});
+        renderCurrentMovies(storedMovies);
       })
   };
 
@@ -148,7 +154,7 @@ function App() {
         localStorage.setItem(MOVIES, JSON.stringify(storedMovies));
         localStorage.setItem(SAVED_MOVIES, JSON.stringify(storedSavedMovies.filter(movie => movie._id !== id)));
 
-        setMoviesInitial({data: storedMovies, setter: setMovies});
+        renderCurrentMovies(storedMovies);
       })
   };
 
@@ -248,9 +254,8 @@ function App() {
                 ? <Movies 
                     movies={movies}
                     setLikesToSearchedMovies={setLikesToSearchedMovies}
-                    setMoviesInitial={setMoviesInitial}
+                    renderCurrentMovies={renderCurrentMovies}
                     searchAllMovies={searchAllMovies}
-                    setMovies={setMovies}
                     onSearchTextChange={onSearchTextChange}
                     searchText={searchText}
                     isShortFilm={isShortFilm}

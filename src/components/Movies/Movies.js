@@ -9,7 +9,6 @@ import { MOVIES } from "../../utils/localStorageConstants";
 import './Movies.css';
 
 function Movies({
-  setMoviesInitial, 
   searchAllMovies,
   onSearchTextChange,
   searchText,
@@ -22,13 +21,13 @@ function Movies({
   onLikeCardHandler,
   onDisLikeCardHanlder,
   onMoreHandler,
-  setMovies
+  renderCurrentMovies
 }) {
 
   useEffect(() => {
     const storedMovies = JSON.parse(localStorage.getItem(MOVIES));
     if (storedMovies && storedMovies.length > 0) {
-      setMoviesInitial({data: storedMovies, setter: setMovies});
+      renderCurrentMovies(storedMovies);
     }
   // eslint-disable-next-line
   }, [])
