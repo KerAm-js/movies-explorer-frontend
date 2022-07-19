@@ -4,7 +4,7 @@ import AuthPageHeader from "../AuthPageHeader/AuthPageHeader";
 import Form from "../Form/Form";
 import LinkFooter from "../LinkFooter/LinkFooter";
 import { useInputValidator } from "../Validator/InputValidator";
-import { nameRegex, nameInvalidMessage, submitErrorMessage } from "../../utils/constants";
+import { nameRegex, nameInvalidMessage, userRegisterError, userEmailConflictError, serverError } from "../../utils/constants";
 import { TOKEN } from "../../utils/localStorageConstants";
 import { singin, signup, getUserInfo } from "../../utils/MainApi";
 import './/Register.css';
@@ -36,9 +36,6 @@ function Register() {
     }
     signup({ email, name, password })
       .then(() => {
-        if (formError) {
-          setFormError("");
-        }
         setUser({ email, name });
         return singin({ email, password })
       })
@@ -56,7 +53,13 @@ function Register() {
       })
       .catch((err) => {
         console.log(err);
-        setIsFormValid(submitErrorMessage);
+        if (err.status === 409) {
+          setFormError(userEmailConflictError);
+        } else if (err.status === 500) {
+          setFormError(serverError);
+        } else {
+          setFormError(userRegisterError);
+        }
       });
   };
 
@@ -68,6 +71,13 @@ function Register() {
     }
     setIsFormValid(false);
   }, [isNameValid, isEmailValid, isPasswordValid]);
+
+  useEffect(() => {
+    if (formError) {
+      setFormError("");
+    }
+  // eslint-disable-next-line
+  }, [email, name, password]);
   
   return (
     <div className="register">

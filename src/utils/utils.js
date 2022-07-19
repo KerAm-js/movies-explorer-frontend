@@ -2,7 +2,7 @@ export const checkResponse = res => {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(`Ошибка ${res.status}`);
+  return Promise.reject({ error: `Ошибка ${res.status}`, status: res.status, message: res.message});
 }
 
 export const getUploadMoviesCount = (width, { isInitial }) => {
@@ -19,5 +19,5 @@ export const getUploadMoviesCount = (width, { isInitial }) => {
 export const getDurationString = duration => {
   const hours = Math.ceil(duration / 60);
   const minutes = duration % 60;
-  return hours + 'ч' + ' ' + minutes + 'м'
+  return `${hours}ч ${minutes}м`;
 }

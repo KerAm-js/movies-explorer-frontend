@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { nameInvalidMessage, nameRegex, userDataUpdated, userDataUpdateError, userEmailConflictError } from "../../utils/constants";
 import { TOKEN } from "../../utils/localStorageConstants";
@@ -20,17 +20,14 @@ function Profile() {
 
   const token = localStorage.getItem(TOKEN);
 
-  const checkIsFormChanged = useCallback(() => {
+  const checkIsFormChanged = () => {
     const isChanged = (email !== user.email) || (name !== user.name);
     if (isChanged) {
-      if (formMessage === userDataUpdated) {
-        setFormMessage('');
-      }
       setIsFormChanged(true);
       return;
     }
     setIsFormChanged(false);
-  }, [email, name, user.name, user.email, formMessage])
+  }
 
   const onSubmit = evt => {
     evt.preventDefault();
@@ -53,6 +50,10 @@ function Profile() {
 
   useEffect(() => {
     checkIsFormChanged();
+  // eslint-disable-next-line
+  }, [email, name]);
+
+  useEffect(() => {
     if (!isEmailValid) {
       setFormMessage(emailError);
     } else if (!isNameValid) {
@@ -60,7 +61,8 @@ function Profile() {
     } else {
       setFormMessage('');
     }
-  }, [checkIsFormChanged, emailError, formMessage, isEmailValid, isNameValid, nameError,]);
+  // eslint-disable-next-line
+  }, [email, name])
 
   return (
     <div className="profile">

@@ -6,8 +6,8 @@ import Footer from "../Footer/Footer";
 import Preloader from "../Preloader/Preloader";
 import Search from "../Search/Search";
 import { IS_SHORT_FILM_SAVED, REQUEST_TEXT_SAVED, TOKEN } from "../../utils/localStorageConstants";
-import { getSavedMovies } from "../../utils/MainApi";
-import { submitErrorMessage } from "../../utils/constants";
+import { getSavedMovies, removeMovie } from "../../utils/MainApi";
+import { serverError, submitErrorMessage } from "../../utils/constants";
 
 
 function SavedMovies() {
@@ -22,6 +22,8 @@ function SavedMovies() {
   const onSearchSavedTextChange = (evt) => setSearchSavedText(evt.target.value);
   const toggleIsSavedShortFilm = () => setIsSavedShortFilm(!isSavedShortFilm);
 
+  const token = localStorage.getItem(TOKEN);
+
   const searchSavedMovies = evt => {
     if (evt) {
       evt.preventDefault();
@@ -35,7 +37,6 @@ function SavedMovies() {
 
     localStorage.setItem(REQUEST_TEXT_SAVED, serachSavedText);
     localStorage.setItem(IS_SHORT_FILM_SAVED, isSavedShortFilm ? "1" : "");
-    const token = localStorage.getItem(TOKEN);
 
     getSavedMovies({ token })
       .then(res => {
@@ -43,12 +44,17 @@ function SavedMovies() {
       })
       .catch(err => {
         console.log(err);
+        if (err.status === 500) {
+          setSearchError(serverError);
+        }
         setSearchError(submitErrorMessage);
       })
       .finally(() => setIsLoaderShown(false));
   }
 
-  const onDisLikeCardHanlder = () => {}
+  const onDisLikeCardHanlder = ({ id }) => {
+    return removeMovie({ id, token })
+  }
 
   return (
     <div className="saved-movies">

@@ -8,7 +8,7 @@ import { useInputValidator } from "../Validator/InputValidator";
 import './LogIn.css';
 import { UserContext } from "../../contexts/UserContext";
 import { singin, getUserInfo } from "../../utils/MainApi";
-import { submitErrorMessage } from "../../utils/constants";
+import { authError, serverError, unauthorizedError } from "../../utils/constants";
 
 function LogIn() {
 
@@ -45,9 +45,15 @@ function LogIn() {
         setUser({ email, name });
         navigate('/movies');
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
-        setFormError(submitErrorMessage);
+        if (err.status === 401) {
+          setFormError(unauthorizedError);
+        } else if (err.status === 500) {
+          setFormError(serverError);
+        } else {
+          setFormError(authError);
+        } 
       })
   } 
 
@@ -59,6 +65,13 @@ function LogIn() {
     }
     setIsFormValid(false);
   }, [isEmailValid, isPasswordValid]);
+
+  useEffect(() => {
+    if (formError) {
+      setFormError('');
+    }
+  // eslint-disable-next-line
+  }, [email, password]);
 
   return (
     <div className="log-in">
