@@ -16,7 +16,6 @@ import { getMovies } from "../../utils/MoviesApi";
 
 import { errorMessage } from "../../utils/constants";
 
-
 function App() {
 
   const [user, setUser] = useState({
@@ -84,7 +83,7 @@ function App() {
     evt.preventDefault();
 
     const storedMovies = JSON.parse(localStorage.getItem(MOVIES));
-    setIsLoaderShown(!storedMovies);
+    setIsLoaderShown(!storedMovies || storedMovies.length === 0);
 
     if (!isMoviesRequested) {
       setIsMoviesRequested(true);
@@ -214,16 +213,17 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem(TOKEN);
-    const storedSavedMovies = localStorage.getItem(SAVED_MOVIES);
     if (token) {
-      getUserInfo({ token })
-        .then(res => {
-          const { email, name } = res;
-          setUser({ email, name });
-        })
-        .catch(err => {
-          console.log(err);
-        })
+      if (!user || (!user.email && !user.name)) {
+        getUserInfo({ token })
+          .then(res => {
+            const { email, name } = res;
+            setUser({ email, name });
+          })
+          .catch(err => {
+            console.log(err);
+          })
+      }
       getSavedMovies({ token })
         .then(res => {
           localStorage.setItem(SAVED_MOVIES, JSON.stringify(res));
