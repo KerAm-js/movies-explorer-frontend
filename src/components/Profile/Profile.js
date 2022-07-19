@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import { nameInvalidMessage, nameRegex, userDataUpdated, userDataUpdateError, userEmailConflictError } from "../../utils/constants";
 import { TOKEN } from "../../utils/localStorageConstants";
 import { updateUser } from "../../utils/MainApi";
 import Button from "../Button/Button";
 import Header from "../Header/Header";
-import Link from "../Link/Link";
 import { useInputValidator } from "../Validator/InputValidator";
 import './Profile.css';
 
@@ -19,6 +19,7 @@ function Profile() {
   const [formMessage, setFormMessage] = useState('');
 
   const token = localStorage.getItem(TOKEN);
+  const navigate = useNavigate();
 
   const checkIsFormChanged = () => {
     const isChanged = (email !== user.email) || (name !== user.name);
@@ -46,6 +47,11 @@ function Profile() {
           setFormMessage(userDataUpdateError);
         })
     }
+  }
+
+  const logout = () => {
+    localStorage.removeItem(TOKEN);
+    navigate('/signin');
   }
 
   useEffect(() => {
@@ -111,7 +117,7 @@ function Profile() {
           />
         </div>
       </form>
-      <Link className="profile__link" title="Выйти из аккаунта" to="#" />
+      <Button type="button" className="profile__link" title="Выйти из аккаунта" onClick={logout} />
     </div>
   )
 }

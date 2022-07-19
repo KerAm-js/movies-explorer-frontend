@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Button from "../Button/Button";
 import Link from "../Link/Link";
@@ -7,11 +7,13 @@ import menuClose from '../../images/close.svg';
 import profile_img from '../../images/account-icon.svg';
 import './Header.css';
 import Logo from "../Logo/Logo";
+import { UserContext } from "../../contexts/UserContext";
 
 
 function Header({ isMainPage }) {
 
   const [opened, setOpened] = useState(false);
+  const { user } = useContext(UserContext)
 
   const drawerSelector = opened ? 'header__nav_opened' : '';
   const menuBtn = opened ? menuClose : menuBurger;
@@ -23,7 +25,7 @@ function Header({ isMainPage }) {
       <div className={`header__content ${ !isMainPage && 'header__content_movies-page' }`}>
         <Logo />
         {
-          isMainPage
+          !user.email && !user.name 
             ? (
               <div className={`header__auth-links header__auth-links_hidden`}> 
                 <Link to="/signup" className="header__signup-link" title='Регистрация' />
@@ -36,17 +38,21 @@ function Header({ isMainPage }) {
               <>
                 <nav className={`header__nav ${drawerSelector}`}>
                   <ul className="header__links-list">
-                    <li className="header__link-item">
-                      <NavLink 
-                        to="/" 
-                        className={({ isActive }) => isActive 
-                          ? "link header__nav-link header__nav-link_active" 
-                          : "link header__nav-link header__nav-link_main"
-                        }
-                      >
-                        Главная
-                      </NavLink>
-                    </li>
+                    {
+                      !isMainPage && (
+                        <li className="header__link-item">
+                          <NavLink 
+                            to="/" 
+                            className={({ isActive }) => isActive 
+                              ? "link header__nav-link header__nav-link_active" 
+                              : "link header__nav-link header__nav-link_main"
+                            }
+                          >
+                            Главная
+                          </NavLink>
+                        </li>
+                      )
+                    }
                     <li className="header__link-item">
                       <NavLink 
                         to="/movies" 
