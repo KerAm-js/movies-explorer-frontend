@@ -7,6 +7,7 @@ import Search from "../Search/Search";
 import Preloader from "../Preloader/Preloader";
 import { MOVIES } from "../../utils/localStorageConstants";
 import './Movies.css';
+import { filterMovies } from "../../utils/utils";
 
 function Movies({
   searchAllMovies,
@@ -21,17 +22,18 @@ function Movies({
   onLikeCardHandler,
   onDisLikeCardHanlder,
   onMoreHandler,
-  renderCurrentMovies
+  renderCurrentMovies,
+  moreButtonShown
 }) {
 
   useEffect(() => {
     const storedMovies = JSON.parse(localStorage.getItem(MOVIES));
     if (storedMovies && storedMovies.length > 0) {
-      renderCurrentMovies(storedMovies);
+      const filtered = filterMovies({ movies: storedMovies, keyword: searchText, isShortFilm });
+      renderCurrentMovies(filtered);
     }
   // eslint-disable-next-line
   }, [])
-
 
   return (
     <div className="movies">
@@ -56,7 +58,7 @@ function Movies({
               />
       }
       {
-        (movies.length > 0 && isMoviesRequested && !searchError) ? <More onMoreHandler={onMoreHandler} /> : null
+        (movies.length > 0 && isMoviesRequested && !searchError && moreButtonShown) ? <More onMoreHandler={onMoreHandler} /> : null
       }
       <Footer />
     </div>

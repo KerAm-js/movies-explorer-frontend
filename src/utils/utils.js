@@ -1,6 +1,24 @@
 import { CURRENT_USER, IS_SHORT_FILM, IS_SHORT_FILM_SAVED, MOVIES, REQUEST_TEXT, REQUEST_TEXT_SAVED, SAVED_MOVIES } from "./localStorageConstants";
 import { BEATFILM_BASE_URL } from "./constants";
 
+
+
+export const filterMovies = ({ movies, keyword, isShortFilm }) => {
+  if (movies && movies.length > 0) {
+    const result = movies.filter(movie => {
+      const filteredByRUword = movie.nameRU ? movie.nameRU.trim().toLowerCase().includes(keyword.toLowerCase()) : false;
+      const filteredByENword = movie.nameEN ? movie.nameEN.trim().toLowerCase().includes(keyword.toLowerCase()) : false;
+
+      const filteredByWord = filteredByRUword || filteredByENword;
+      const filteredByDuration = isShortFilm ? movie.duration <= 40 : true;
+
+      return filteredByDuration && filteredByWord;
+    })
+    return result || [];
+  }
+  return movies || [];
+}
+
 export const checkResponse = res => {
   if (res.ok) {
     return res.json();
@@ -20,9 +38,12 @@ export const getUploadMoviesCount = (width, { isInitial }) => {
 }
 
 export const getDurationString = duration => {
-  const hours = Math.ceil(duration / 60);
-  const minutes = duration % 60;
-  return `${hours}ч ${minutes}м`;
+  if (duration >= 60) {
+    const hours = Math.ceil(duration / 60);
+    const minutes = duration % 60;
+    return `${hours}ч ${minutes}м`;
+  }
+  return `${duration}м`;
 }
 
 export const setLikes = (movies, savedMovies) => {
@@ -50,13 +71,21 @@ export const setLikesToSearchedMovies = uploadedMovies => {
 }
 
 export const prepareMovieForSaving = movie => {
-  const { id, image, created_at, updated_at, isLiked, savedId, ...movieData } = movie;
+  const { id, image, country, director, duration, year, description, trailerLink, nameRU, nameEN } = movie;
   const savedMovie = { 
     movieId: id, 
     image: `${BEATFILM_BASE_URL}${image.url}`,
     thumbnail: `${BEATFILM_BASE_URL}${image.formats.thumbnail.url}`,
-    ...movieData  
+    duration,
+    country: country || ' ',
+    director: director || ' ',
+    year: year || ' ',
+    description: description || ' ',
+    trailerLink: trailerLink || ' ',
+    nameRU: nameRU || ' ',
+    nameEN: nameEN || ' ',
   }
+  console.log(savedMovie);
   return savedMovie;
 }
 

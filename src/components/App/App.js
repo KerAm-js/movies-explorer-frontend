@@ -11,7 +11,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import { TOKEN, MOVIES, REQUEST_TEXT, IS_SHORT_FILM, SAVED_MOVIES, REQUEST_TEXT_SAVED, IS_SHORT_FILM_SAVED } from "../../utils/localStorageConstants";
 import { getUserInfo, addMovie, removeMovie, getSavedMovies } from "../../utils/MainApi";
-import { getUploadMoviesCount, prepareMovieForSaving, setLikesToSearchedMovies } from "../../utils/utils";
+import { filterMovies, getUploadMoviesCount, prepareMovieForSaving, setLikesToSearchedMovies } from "../../utils/utils";
 import { getMovies } from "../../utils/MoviesApi";
 
 import { errorMessage } from "../../utils/constants";
@@ -32,6 +32,7 @@ function App() {
   const [searchText, setSearchText] = useState(localStorage.getItem(REQUEST_TEXT) || "");
   const [isShortFilm, setIsShortFilm] = useState(Boolean(localStorage.getItem(IS_SHORT_FILM)) || false);
   const [searchError, setSearchError] = useState("");
+  const [moreButtonShown, setMoreButtonShown] = useState(true);
 
   //saved movies
   const [savedMovies, setSavedMovies] = useState([]);
@@ -68,6 +69,12 @@ function App() {
     if (uploadedCountSetter) {
       uploadedCountSetter(count);
     }
+
+    if (data.length <= count) {
+      setMoreButtonShown(false);
+      return;
+    }
+    setMoreButtonShown(true);
   };
 
   //нажатие кнопки "ещё"
@@ -82,6 +89,11 @@ function App() {
 
   const renderCurrentMovies = data => {
     setMovies(data.slice(0, uploadedMoviesCount));
+    if (data.length <= uploadMoviesCount) {
+      setMoreButtonShown(false);
+      return;
+    }
+    setMoreButtonShown(true);
   }
 
   const searchAllMovies = evt => {
@@ -102,7 +114,8 @@ function App() {
       getMovies()
         .then((data) => {
           const updatedMovies = setLikesToSearchedMovies(data);
-          setMoviesInitial({data: updatedMovies, setter: setMovies, uploadedCountSetter: setUploadedMoviesCount});
+          const filtered = filterMovies({ movies: updatedMovies, keyword: searchText, isShortFilm })
+          setMoviesInitial({data: filtered, setter: setMovies, uploadedCountSetter: setUploadedMoviesCount});
           localStorage.setItem(MOVIES, JSON.stringify(updatedMovies));
           setSearchError("");
         })
@@ -114,11 +127,13 @@ function App() {
       return;
     } 
     const updatedMovies = setLikesToSearchedMovies(storedMovies);
-    setMoviesInitial({data: updatedMovies, setter: setMovies,  uploadedCountSetter: setUploadedMoviesCount});
+    const filtered = filterMovies({ movies: updatedMovies, keyword: searchText, isShortFilm })
+    setMoviesInitial({data: filtered, setter: setMovies,  uploadedCountSetter: setUploadedMoviesCount});
     setSearchError('');
   }
 
   const onLikeCardHandler = ({ movie }) => {
+    console.log(movie);
     const token = localStorage.getItem(TOKEN);
     const savedMovie = prepareMovieForSaving(movie)
 
@@ -134,7 +149,9 @@ function App() {
 
         localStorage.setItem(MOVIES, JSON.stringify(storedMovies));
         localStorage.setItem(SAVED_MOVIES, JSON.stringify([ ...storedSavedMovies, svdMovie ]));
-        renderCurrentMovies(storedMovies);
+
+        const filtered = filterMovies({ movies: storedMovies, keyword: searchText, isShortFilm })
+        renderCurrentMovies(filtered);
       })
   };
 
@@ -154,7 +171,8 @@ function App() {
         localStorage.setItem(MOVIES, JSON.stringify(storedMovies));
         localStorage.setItem(SAVED_MOVIES, JSON.stringify(storedSavedMovies.filter(movie => movie._id !== id)));
 
-        renderCurrentMovies(storedMovies);
+        const filtered = filterMovies({ movies: storedMovies, keyword: searchText, isShortFilm })
+        renderCurrentMovies(filtered);
       })
   };
 
@@ -168,7 +186,10 @@ function App() {
     localStorage.setItem(REQUEST_TEXT_SAVED, serachSavedText);
     localStorage.setItem(IS_SHORT_FILM_SAVED, isSavedShortFilm ? "1" : "");
 
-    setSavedMovies(JSON.parse(localStorage.getItem(SAVED_MOVIES)) || []);
+    const storedSavedMovies = JSON.parse(localStorage.getItem(SAVED_MOVIES)) || []
+
+    const filtered = filterMovies({ movies: storedSavedMovies, keyword: serachSavedText, isShortFilm: isSavedShortFilm });
+    setSavedMovies(filtered);
   }
 
   const onDisLikeSavedCardHanlder = ({ _id, movieId }) => {
@@ -201,7 +222,9 @@ function App() {
         //если произошла ошибка, возвращаем прежнее состояние
         console.log(err);
         setSavedMovies(storedSavedMovies);
-        setMovies(storedMovies);
+
+        const filtered = filterMovies({ movies: storedMovies, keyword: searchText, isShortFilm })
+        setMovies(filtered);
       })
   }
 
@@ -266,6 +289,7 @@ function App() {
                     onLikeCardHandler={onLikeCardHandler}
                     onDisLikeCardHanlder={onDisLikeCardHanlder}
                     onMoreHandler={onMoreHandler}
+                    moreButtonShown={moreButtonShown}
                   />
                 : <Navigate to="/signin" />
             }
