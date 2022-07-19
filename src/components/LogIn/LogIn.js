@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import AuthPageHeader from "../AuthPageHeader/AuthPageHeader";
 import Form from "../Form/Form";
 import LinkFooter from "../LinkFooter/LinkFooter";
-import { TOKEN } from "../../utils/localStorageConstants";
+import { CURRENT_USER, MOVIES, SAVED_MOVIES, TOKEN } from "../../utils/localStorageConstants";
 import { useInputValidator } from "../Validator/InputValidator";
 import './LogIn.css';
 import { UserContext } from "../../contexts/UserContext";
 import { singin, getUserInfo } from "../../utils/MainApi";
 import { authError, serverError, unauthorizedError } from "../../utils/constants";
+import { clearLocalStorage } from "../../utils/utils";
 
 function LogIn() {
 
@@ -29,11 +30,11 @@ function LogIn() {
   }
 
   const onSignInHandler = evt => {
-    if (evt) {
-      evt.preventDefault();
-    }
+    evt.preventDefault();
     singin({ email, password, })
       .then(res => {
+        clearLocalStorage();
+        console.log(localStorage.getItem(MOVIES));
         if (res.token) {
           localStorage.setItem(TOKEN, res.token);
         }

@@ -4,12 +4,13 @@ import { UserContext } from "../../contexts/UserContext";
 import { nameInvalidMessage, nameRegex, userDataUpdated, userDataUpdateError, userEmailConflictError } from "../../utils/constants";
 import { TOKEN } from "../../utils/localStorageConstants";
 import { updateUser } from "../../utils/MainApi";
+import { clearLocalStorage } from "../../utils/utils";
 import Button from "../Button/Button";
 import Header from "../Header/Header";
 import { useInputValidator } from "../Validator/InputValidator";
 import './Profile.css';
 
-function Profile() {
+function Profile({ setGlobalDefaults }) {
 
   const {user, setUser} = useContext(UserContext);
 
@@ -51,6 +52,8 @@ function Profile() {
 
   const logout = () => {
     localStorage.removeItem(TOKEN);
+    setGlobalDefaults();
+    clearLocalStorage();
     navigate('/signin');
   }
 

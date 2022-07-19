@@ -10,7 +10,7 @@ import PageNotFound from "../PageNotFound/PageNotFound";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import { TOKEN, MOVIES, REQUEST_TEXT, IS_SHORT_FILM, SAVED_MOVIES, REQUEST_TEXT_SAVED, IS_SHORT_FILM_SAVED } from "../../utils/localStorageConstants";
-import { getUserInfo, addMovie, removeMovie } from "../../utils/MainApi";
+import { getUserInfo, addMovie, removeMovie, getSavedMovies } from "../../utils/MainApi";
 import { getUploadMoviesCount, prepareMovieForSaving, setLikesToSearchedMovies } from "../../utils/utils";
 import { getMovies } from "../../utils/MoviesApi";
 
@@ -44,6 +44,21 @@ function App() {
   const toggleIsShortFilm = () => setIsShortFilm(!isShortFilm);
   const onSearchSavedTextChange = (evt) => setSearchSavedText(evt.target.value);
   const toggleIsSavedShortFilm = () => setIsSavedShortFilm(!isSavedShortFilm);
+
+  const setGlobalDefaults = () => {
+    setMovies([]);
+    setIsLoaderShown(false);
+    setUploadMoviesCount(getUploadMoviesCount(window.innerWidth, { isInitial: false }));
+    setIsMoviesRequested(false);
+    setSearchText("");
+    setIsShortFilm(false);
+    setSearchError("");
+    setSavedMovies([]);
+    setIsSavedShortFilm(false);
+    setSearchSavedText("");
+    setIsSavedMoviesRequested(false);
+    setSearchErrorSaved("");
+  }
 
   //для первой подгрузки фильмов
   const setMoviesInitial = ({ data, setter }) => {
@@ -160,7 +175,6 @@ function App() {
     const newSavedMovies = storedSavedMovies.filter(movie => movie._id !== _id);
     const newMovies = storedMovies.map(movie => {
       if (movie.id === movieId) {
-        console.log(movie);
         movie.isLiked = false;
         movie.savedId = null;
         return movie;
@@ -200,6 +214,7 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem(TOKEN);
+    const storedSavedMovies = localStorage.getItem(SAVED_MOVIES);
     if (token) {
       getUserInfo({ token })
         .then(res => {
@@ -209,9 +224,17 @@ function App() {
         .catch(err => {
           console.log(err);
         })
+      getSavedMovies({ token })
+        .then(res => {
+          localStorage.setItem(SAVED_MOVIES, JSON.stringify(res));
+        })
+        .catch(err => {
+          console.log(err);
+          localStorage.setItem(SAVED_MOVIES, JSON.stringify([]));
+        })
     }
   // eslint-disable-next-line
-  }, [])
+  }, [user])
 
   return (
     <UserContext.Provider value={{user, setUser}}>
@@ -266,7 +289,7 @@ function App() {
             path="/profile"
             element={
               user.email && user.name  
-                ? <Profile/>
+                ? <Profile setGlobalDefaults={setGlobalDefaults} />
                 : <Navigate to="/signin" />
             }
           />

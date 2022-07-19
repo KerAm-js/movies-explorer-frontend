@@ -1,4 +1,4 @@
-import { SAVED_MOVIES } from "./localStorageConstants";
+import { CURRENT_USER, IS_SHORT_FILM, IS_SHORT_FILM_SAVED, MOVIES, REQUEST_TEXT, REQUEST_TEXT_SAVED, SAVED_MOVIES } from "./localStorageConstants";
 import { BEATFILM_BASE_URL } from "./constants";
 
 export const checkResponse = res => {
@@ -58,4 +58,14 @@ export const prepareMovieForSaving = movie => {
     ...movieData  
   }
   return savedMovie;
+}
+
+export const clearLocalStorage = () => {
+  localStorage.setItem(MOVIES, JSON.stringify([]));
+  localStorage.setItem(SAVED_MOVIES, JSON.stringify([]));
+  localStorage.removeItem(IS_SHORT_FILM);
+  localStorage.removeItem(IS_SHORT_FILM_SAVED);
+  localStorage.removeItem(REQUEST_TEXT);
+  localStorage.removeItem(REQUEST_TEXT_SAVED);
+  localStorage.removeItem(CURRENT_USER);
 }

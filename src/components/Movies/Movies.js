@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Cards from "../Cards/Cards";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -9,7 +9,6 @@ import { MOVIES } from "../../utils/localStorageConstants";
 import './Movies.css';
 
 function Movies({
-  setLikesToSearchedMovies,
   setMoviesInitial, 
   searchAllMovies,
   onSearchTextChange,
@@ -29,7 +28,6 @@ function Movies({
   useEffect(() => {
     const storedMovies = JSON.parse(localStorage.getItem(MOVIES));
     if (storedMovies && storedMovies.length > 0) {
-      console.log(storedMovies);
       setMoviesInitial({data: storedMovies, setter: setMovies});
     }
   // eslint-disable-next-line

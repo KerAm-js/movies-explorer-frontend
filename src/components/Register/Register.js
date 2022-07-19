@@ -9,6 +9,7 @@ import { TOKEN } from "../../utils/localStorageConstants";
 import { singin, signup, getUserInfo } from "../../utils/MainApi";
 import './/Register.css';
 import { UserContext } from "../../contexts/UserContext";
+import { clearLocalStorage } from "../../utils/utils";
 
 function Register() {
 
@@ -36,6 +37,7 @@ function Register() {
     }
     signup({ email, name, password })
       .then(() => {
+        clearLocalStorage();
         setUser({ email, name });
         return singin({ email, password })
       })

@@ -3,9 +3,8 @@ import './SavedMovies.css';
 import Cards from "../Cards/Cards";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Preloader from "../Preloader/Preloader";
 import Search from "../Search/Search";
-import { IS_SHORT_FILM_SAVED, REQUEST_TEXT_SAVED, SAVED_MOVIES, TOKEN } from "../../utils/localStorageConstants";
+import { SAVED_MOVIES, TOKEN } from "../../utils/localStorageConstants";
 import { getSavedMovies, removeMovie } from "../../utils/MainApi";
 import { serverError, submitErrorMessage } from "../../utils/constants";
 
