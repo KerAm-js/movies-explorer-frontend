@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AuthPageHeader from "../AuthPageHeader/AuthPageHeader";
 import Form from "../Form/Form";
 import LinkFooter from "../LinkFooter/LinkFooter";
-import { CURRENT_USER, MOVIES, SAVED_MOVIES, TOKEN } from "../../utils/localStorageConstants";
+import { MOVIES, TOKEN } from "../../utils/localStorageConstants";
 import { useInputValidator } from "../Validator/InputValidator";
 import './LogIn.css';
 import { UserContext } from "../../contexts/UserContext";

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "../Button/Button";
 import likeImg from '../../images/like.svg';
 import disLikeImg from '../../images/dislike.svg';

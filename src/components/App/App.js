@@ -7,7 +7,7 @@ import Register from "../Register/Register";
 import LogIn from "../LogIn/LogIn";
 import Profile from "../Profile/Profile";
 import PageNotFound from "../PageNotFound/PageNotFound";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import { TOKEN, MOVIES, REQUEST_TEXT, IS_SHORT_FILM, SAVED_MOVIES, REQUEST_TEXT_SAVED, IS_SHORT_FILM_SAVED } from "../../utils/localStorageConstants";
 import { getUserInfo, addMovie, removeMovie, getSavedMovies } from "../../utils/MainApi";
@@ -15,6 +15,7 @@ import { filterMovies, getUploadMoviesCount, prepareMovieForSaving, setLikesToSe
 import { getMovies } from "../../utils/MoviesApi";
 
 import { errorMessage } from "../../utils/constants";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
 
@@ -42,9 +43,21 @@ function App() {
   const [searchErrorSaved, setSearchErrorSaved] = useState("");
 
   const onSearchTextChange = (evt) => setSearchText(evt.target.value);
-  const toggleIsShortFilm = () => setIsShortFilm(!isShortFilm);
   const onSearchSavedTextChange = (evt) => setSearchSavedText(evt.target.value);
-  const toggleIsSavedShortFilm = () => setIsSavedShortFilm(!isSavedShortFilm);
+
+  const toggleIsShortFilm = () => {
+    const storedMovies = JSON.parse(localStorage.getItem(MOVIES));
+    const filtered = filterMovies({ movies: storedMovies, keyword: searchText, isShortFilm: !isShortFilm });
+    renderCurrentMovies(filtered);
+    setIsShortFilm(!isShortFilm);
+  };
+
+  const toggleIsSavedShortFilm = () => {
+    const storedMovies = JSON.parse(localStorage.getItem(SAVED_MOVIES));
+    const filtered = filterMovies({ movies: storedMovies, keyword: searchText, isShortFilm: !isSavedShortFilm });
+    renderCurrentMovies(filtered);
+    setIsSavedShortFilm(!isSavedShortFilm);
+  };
 
   const setGlobalDefaults = () => {
     setMovies([]);
@@ -79,17 +92,27 @@ function App() {
 
   //нажатие кнопки "ещё"
   const onMoreHandler = () => {
-    const data = JSON.parse(localStorage.getItem(MOVIES)).slice(
-      movies.length,
+    const data = JSON.parse(localStorage.getItem(MOVIES))
+    const filtered = filterMovies({ movies: data, keyword: searchText, isShortFilm }).slice(
+      0,
       movies.length + uploadMoviesCount
     );
-    setMovies((prev) => [...prev, ...data]);
+
+    console.log(filtered.length <= uploadedMoviesCount + uploadMoviesCount);
+
+    setMovies(filtered);
     setUploadedMoviesCount(uploadedMoviesCount + uploadMoviesCount);
+
+    if (filtered.length <= uploadedMoviesCount + uploadMoviesCount) {
+      setMoreButtonShown(false);
+      return;
+    }
+    setMoreButtonShown(true);
   };
 
   const renderCurrentMovies = data => {
     setMovies(data.slice(0, uploadedMoviesCount));
-    if (data.length <= uploadMoviesCount) {
+    if (data.length <= uploadedMoviesCount) {
       setMoreButtonShown(false);
       return;
     }
@@ -133,7 +156,6 @@ function App() {
   }
 
   const onLikeCardHandler = ({ movie }) => {
-    console.log(movie);
     const token = localStorage.getItem(TOKEN);
     const savedMovie = prepareMovieForSaving(movie)
 
@@ -153,6 +175,7 @@ function App() {
         const filtered = filterMovies({ movies: storedMovies, keyword: searchText, isShortFilm })
         renderCurrentMovies(filtered);
       })
+      // цепочка промисов завершается в компоненте картчоки, там она и завершается блоком catch
   };
 
   const onDisLikeCardHanlder = ({ id, movieId }) => {
@@ -174,6 +197,7 @@ function App() {
         const filtered = filterMovies({ movies: storedMovies, keyword: searchText, isShortFilm })
         renderCurrentMovies(filtered);
       })
+      // цепочка промисов завершается в компоненте картчоки, там она и завершается блоком catch
   };
 
   const searchSavedMovies = evt => {
@@ -271,64 +295,68 @@ function App() {
         <Routes>
           <Route index path="/" element={<Main />} />
           <Route 
+            index
             path="/movies"
             element={
-              user.email && user.name 
-                ? <Movies 
-                    movies={movies}
-                    setLikesToSearchedMovies={setLikesToSearchedMovies}
-                    renderCurrentMovies={renderCurrentMovies}
-                    searchAllMovies={searchAllMovies}
-                    onSearchTextChange={onSearchTextChange}
-                    searchText={searchText}
-                    isShortFilm={isShortFilm}
-                    toggleIsShortFilm={toggleIsShortFilm}
-                    isMoviesRequested={isMoviesRequested}
-                    isLoaderShown={isLoaderShown}
-                    searchError={searchError}
-                    onLikeCardHandler={onLikeCardHandler}
-                    onDisLikeCardHanlder={onDisLikeCardHanlder}
-                    onMoreHandler={onMoreHandler}
-                    moreButtonShown={moreButtonShown}
-                  />
-                : <Navigate to="/signin" />
+              <ProtectedRoute 
+                component={Movies}
+                setLikesToSearchedMovies={setLikesToSearchedMovies}
+                renderCurrentMovies={renderCurrentMovies}
+                searchAllMovies={searchAllMovies}
+                onSearchTextChange={onSearchTextChange}
+                searchText={searchText}
+                isShortFilm={isShortFilm}
+                toggleIsShortFilm={toggleIsShortFilm}
+                isMoviesRequested={isMoviesRequested}
+                isLoaderShown={isLoaderShown}
+                searchError={searchError}
+                onLikeCardHandler={onLikeCardHandler}
+                onDisLikeCardHanlder={onDisLikeCardHanlder}
+                onMoreHandler={onMoreHandler}
+                moreButtonShown={moreButtonShown}
+                movies={movies}
+              />
             }
           />
           <Route 
+            index
             path="/saved-movies"
             element={
-              user.email && user.name  
-                ? <SavedMovies 
-                    savedMovies={savedMovies}
-                    searchError={searchErrorSaved}
-                    onDisLikeCardHanlder={onDisLikeSavedCardHanlder}
-                    isMoviesRequested={isSavedMoviesRequested}
-                    setSearchError={setSearchErrorSaved}
-                    onSearchSavedTextChange={onSearchSavedTextChange}
-                    searchSavedText={serachSavedText}
-                    toggleIsSavedShortFilm={toggleIsSavedShortFilm}
-                    searchSavedMovies={searchSavedMovies}
-                    setSavedMovies={setSavedMovies}
-                    setMoviesInitial={setMoviesInitial}
-                  />
-                : <Navigate to="/signin" />
-            }
+              <ProtectedRoute 
+                component={SavedMovies}
+                savedMovies={savedMovies}
+                searchError={searchErrorSaved}
+                onDisLikeCardHanlder={onDisLikeSavedCardHanlder}
+                isMoviesRequested={isSavedMoviesRequested}
+                setSearchError={setSearchErrorSaved}
+                onSearchSavedTextChange={onSearchSavedTextChange}
+                searchSavedText={serachSavedText}
+                toggleIsSavedShortFilm={toggleIsSavedShortFilm}
+                searchSavedMovies={searchSavedMovies}
+                setSavedMovies={setSavedMovies}
+                setMoviesInitial={setMoviesInitial}
+              />
+            } 
           />
           <Route 
+            index
             path="/profile"
             element={
-              user.email && user.name  
-                ? <Profile setGlobalDefaults={setGlobalDefaults} />
-                : <Navigate to="/signin" />
+              <ProtectedRoute 
+                component={Profile}
+                setGlobalDefaults={setGlobalDefaults}
+              />
             }
           />
           <Route 
+            index
             path="/signin" 
             element={
               <LogIn />
             } 
           />
           <Route
+            index
             path="/signup"
             element={
               <Register />

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import './SavedMovies.css';
 import Cards from "../Cards/Cards";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Search from "../Search/Search";
 import { SAVED_MOVIES, TOKEN } from "../../utils/localStorageConstants";
-import { getSavedMovies, removeMovie } from "../../utils/MainApi";
+import { getSavedMovies } from "../../utils/MainApi";
 import { serverError, submitErrorMessage } from "../../utils/constants";
 
 

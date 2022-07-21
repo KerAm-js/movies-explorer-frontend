@@ -85,7 +85,6 @@ export const prepareMovieForSaving = movie => {
     nameRU: nameRU || ' ',
     nameEN: nameEN || ' ',
   }
-  console.log(savedMovie);
   return savedMovie;
 }
 

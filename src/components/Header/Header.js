@@ -8,12 +8,14 @@ import profile_img from '../../images/account-icon.svg';
 import './Header.css';
 import Logo from "../Logo/Logo";
 import { UserContext } from "../../contexts/UserContext";
+import { TOKEN } from "../../utils/localStorageConstants";
 
 
 function Header({ isMainPage }) {
 
   const [opened, setOpened] = useState(false);
   const { user } = useContext(UserContext)
+  const token = localStorage.getItem(TOKEN);
 
   const drawerSelector = opened ? 'header__nav_opened' : '';
   const menuBtn = opened ? menuClose : menuBurger;
@@ -25,7 +27,7 @@ function Header({ isMainPage }) {
       <div className={`header__content ${ !isMainPage && 'header__content_movies-page' }`}>
         <Logo />
         {
-          !user.email && !user.name 
+          !user.email && !user.name && !token
             ? (
               <div className={`header__auth-links header__auth-links_hidden`}> 
                 <Link to="/signup" className="header__signup-link" title='Регистрация' />

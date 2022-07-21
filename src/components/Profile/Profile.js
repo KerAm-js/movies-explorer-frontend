@@ -54,7 +54,8 @@ function Profile({ setGlobalDefaults }) {
     localStorage.removeItem(TOKEN);
     setGlobalDefaults();
     clearLocalStorage();
-    navigate('/signin');
+    setUser({ email: "", name: "" })
+    navigate('/');
   }
 
   useEffect(() => {

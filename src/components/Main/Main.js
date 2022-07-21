@@ -11,7 +11,7 @@ function Main() {
     <div className="main">
       <Header isMainPage={true} />
       <Promo />
-      <a name="project"></a>
+      <a name="project" />
       <Project />
       <Technologies />
       <Student />
