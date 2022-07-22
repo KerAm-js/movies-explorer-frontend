@@ -89,8 +89,8 @@ export const prepareMovieForSaving = movie => {
 }
 
 export const clearLocalStorage = () => {
-  localStorage.setItem(MOVIES, JSON.stringify([]));
-  localStorage.setItem(SAVED_MOVIES, JSON.stringify([]));
+  localStorage.removeItem(MOVIES);
+  localStorage.removeItem(SAVED_MOVIES);
   localStorage.removeItem(IS_SHORT_FILM);
   localStorage.removeItem(IS_SHORT_FILM_SAVED);
   localStorage.removeItem(REQUEST_TEXT);

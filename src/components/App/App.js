@@ -98,12 +98,10 @@ function App() {
       movies.length + uploadMoviesCount
     );
 
-    console.log(filtered.length <= uploadedMoviesCount + uploadMoviesCount);
-
     setMovies(filtered);
     setUploadedMoviesCount(uploadedMoviesCount + uploadMoviesCount);
 
-    if (filtered.length <= uploadedMoviesCount + uploadMoviesCount) {
+    if (filtered.length <= uploadedMoviesCount) {
       setMoreButtonShown(false);
       return;
     }
@@ -293,9 +291,8 @@ function App() {
     <UserContext.Provider value={{user, setUser}}>
       <div className="App">
         <Routes>
-          <Route index path="/" element={<Main />} />
+          <Route path="/" element={<Main />} />
           <Route 
-            index
             path="/movies"
             element={
               <ProtectedRoute 
@@ -319,7 +316,6 @@ function App() {
             }
           />
           <Route 
-            index
             path="/saved-movies"
             element={
               <ProtectedRoute 
@@ -339,7 +335,6 @@ function App() {
             } 
           />
           <Route 
-            index
             path="/profile"
             element={
               <ProtectedRoute 
@@ -349,14 +344,12 @@ function App() {
             }
           />
           <Route 
-            index
             path="/signin" 
             element={
               <LogIn />
             } 
           />
           <Route
-            index
             path="/signup"
             element={
               <Register />
