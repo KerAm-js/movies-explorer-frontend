@@ -1,0 +1,20 @@
+.header__content {
+  padding: 18px 70px;
+  display: flex;
+  max-width: 1140px;
+  flex: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .header__content {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .header__content {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}

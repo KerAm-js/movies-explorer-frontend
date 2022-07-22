@@ -1,0 +1,25 @@
+.student__project-link {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 50px;
+  color: #fff;
+  text-decoration: none;
+  padding: 20px 0 20px;
+  letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 768px) {
+  .student__project-link {
+    font-size: 28px;
+    line-height: 50px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .student__project-link {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}

@@ -1,0 +1,15 @@
+.link-footer__link {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #4285F4;
+  margin: 0 0 0 6px;
+}
+
+@media screen and (max-width: 425px) {
+  .link-footer__link {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

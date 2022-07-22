@@ -1,0 +1,14 @@
+@import url('./elements/index.css');
+
+.header {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #202020;
+  width: 100%;
+}
+
+.header_main-page {
+  background-color: #073042;
+}

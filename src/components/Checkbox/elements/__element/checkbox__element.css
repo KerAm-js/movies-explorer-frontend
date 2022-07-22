@@ -1,0 +1,12 @@
+.checkbox__element {
+  width: 36px;
+  height: 20px;
+  background-color: #EBEBEB;
+  transition: all .2s linear;
+  padding: 6px;
+  border-radius: 20px;
+}
+
+.checkbox__element:hover {
+  opacity: 1;
+}

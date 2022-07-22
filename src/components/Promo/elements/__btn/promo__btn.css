@@ -1,0 +1,10 @@
+.promo__btn {
+  color: #fff;
+  min-width: 129px;
+  min-height: 36px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  border: 1px solid rgba(250, 250, 250, 0.6);
+  border-radius: 3px;
+}

@@ -1,0 +1,22 @@
+.text-block__title {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #fff;
+  margin: 0 0 26px 0;
+  padding: 0;
+  letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 768px) {
+  .text-block__title {
+    margin-bottom: 18px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .text-block__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

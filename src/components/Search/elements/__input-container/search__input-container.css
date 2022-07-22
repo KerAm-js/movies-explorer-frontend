@@ -1,0 +1,10 @@
+.search__input-container {
+  border: 1.5px solid rgba(170, 170, 170, .2);
+  border-radius: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 7px 7px 22px;
+  box-sizing: border-box;
+  width: 100%;
+}

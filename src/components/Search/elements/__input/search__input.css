@@ -1,0 +1,21 @@
+.search__input {
+  background: none;
+  border: none;
+  color: #fff;
+  height: 18px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  flex: 1;
+}
+
+.search__input:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 425px) {
+  .search__input {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}

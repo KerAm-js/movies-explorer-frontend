@@ -1,0 +1,25 @@
+.promo__content {
+  max-width: 1140px;
+  flex: 1;
+  padding: 75px 70px;
+}
+
+@media screen and (max-width: 1023px) {
+  .promo__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .promo__content {
+    padding: 140px 30px 76px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .promo__content {
+    padding: 70px 10px 30px;
+  }
+}

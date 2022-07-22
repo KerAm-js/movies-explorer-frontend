@@ -1,0 +1,34 @@
+.student__about {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #fff;
+  max-width: 600px;
+  margin: 0 49px 20px 0;
+  padding: 0;
+  mix-blend-mode: normal;
+}
+
+@media screen and (max-width: 768px) {
+  .student__about {
+    font-size: 12px;
+    line-height: 18px;
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .student__about {
+    font-size: 12px;
+    line-height: 18px;
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .student__about {
+    font-size: 11px;
+    line-height: 16px;
+    margin-bottom: 40px;
+  }
+}

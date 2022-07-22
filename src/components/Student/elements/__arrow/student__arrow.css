@@ -1,0 +1,20 @@
+.student__arrow {
+  margin-top: 10px;
+  margin-right: 5px;
+  max-width: 30px;
+  max-height: 60px;
+}
+
+@media screen and (max-width: 768px) {
+  .student__arrow {
+    max-width: 27px;
+    max-height: 60px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .student__arrow {
+    max-width: 18px;
+    max-height: 28px;
+  }
+}

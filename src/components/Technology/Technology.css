@@ -1,0 +1,22 @@
+.technology {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  width: 90px;
+  height: 60px;
+  border-radius: 10px;
+  background-color: #303030;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 768px) {
+  .technology {
+    font-size: 12px;
+    line-height: 15px;
+    width: 84px;
+    height: 57px;
+  }
+}

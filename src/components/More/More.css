@@ -1,0 +1,6 @@
+@import url('./elements/index.css');
+
+.more {
+  display: flex;
+  justify-content: center;
+}

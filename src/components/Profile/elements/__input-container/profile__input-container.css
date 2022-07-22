@@ -1,0 +1,13 @@
+.profile__input-container {
+  margin: 0;
+  padding: 0 0 16px;
+  border-bottom: 1px solid #424242;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile__input-container:last-of-type {
+  border-bottom: none;
+  padding: 17px 0 0;
+}

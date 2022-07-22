@@ -1,0 +1,17 @@
+.cards__message {
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    padding: 0 30%;
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 550px) {
+    .cards__message {
+        width: 100%;
+        padding: 0 10%;
+    }
+}

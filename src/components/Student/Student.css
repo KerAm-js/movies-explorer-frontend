@@ -1,0 +1,21 @@
+@import url('./elements/index.css');
+
+.student {
+  background-color: #202020;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 110px 70px;
+}
+
+@media screen and (max-width: 768px) {
+  .student {
+    padding: 90px 50px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .student {
+    padding: 70px 14px;
+  }
+}

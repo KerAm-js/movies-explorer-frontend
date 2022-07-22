@@ -1,0 +1,8 @@
+@import url('./elements/index.css');
+
+.link-footer {
+  display: flex;
+  margin: 16px 0 0;
+  padding: 0 0 30px;
+  align-items: center;
+}

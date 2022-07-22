@@ -1,0 +1,14 @@
+.header__profile-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  border: 2px solid rgba(170, 170, 170, 0.2);
+  min-width: 100px;
+  min-height: 32px;
+  border-radius: 50px;
+  color: #fff;
+  text-decoration: none;
+}

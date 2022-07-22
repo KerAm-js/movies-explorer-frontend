@@ -1,0 +1,23 @@
+.student__photo {
+  width: 270px;
+  height: 327px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  .student__photo {
+    max-width: 255px;
+    max-height: 307px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .student__photo {
+    margin-left: 0;
+    margin-bottom: 40px;
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    max-height: 602px;
+  }
+}

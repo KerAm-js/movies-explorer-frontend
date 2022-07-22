@@ -1,0 +1,28 @@
+.project__plan {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 1140px;
+  display: grid;
+  grid-template-columns: 228px 1fr;
+  grid-template-rows: 36px 31px;
+  justify-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .project__plan {
+    grid-template-columns: 140px 1fr;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .project__plan {
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 35px 23px;
+    font-size: 11px;
+    line-height: 13px;
+  }
+}

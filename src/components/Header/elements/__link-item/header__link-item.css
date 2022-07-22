@@ -1,0 +1,23 @@
+.header__link-item {
+  margin: 0 16px 0 0;
+  padding: 0;
+}
+
+.header__link-item:last-of-type {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .header__link-item {
+    margin-bottom: 22px;
+    border-bottom-width: 2px;
+    padding-bottom: 4px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .header__link-item {
+    margin-bottom: 15px;
+    padding-bottom: 7px;
+  }
+}

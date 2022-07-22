@@ -1,0 +1,25 @@
+@import url('./elements/index.css');
+
+.cards {
+  padding: 70px 70px 10px;
+  flex: 1;
+}
+
+@media screen and (min-width: 1280px) {
+  .cards {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cards {
+    padding: 70px 30px 30px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .cards {
+    padding: 40px 10px 26px;
+  }
+}

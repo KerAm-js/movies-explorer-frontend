@@ -1,0 +1,13 @@
+.student__contacts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+@media screen and (max-width: 425px) {
+  .student__contacts {
+    gap: 26px;
+  }
+}

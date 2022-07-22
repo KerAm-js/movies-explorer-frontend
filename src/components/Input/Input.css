@@ -1,0 +1,6 @@
+@import url('./elements/index.css');
+
+.input {
+  padding: 0;
+  margin: 0 0 10px;
+}

@@ -1,0 +1,19 @@
+.card__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 16px 10px;
+  max-height: 30px;
+}
+
+@media screen and (max-width: 768px) {
+  .card__info {
+    padding: 8px 14px 7px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card__info {
+    padding: 7px 10px 6px 14px;
+  }
+}

@@ -1,0 +1,8 @@
+@import url('./elements/index.css');
+
+.saved-movies {
+  min-height: 100vh;
+  background-color: #202020;
+  display: flex;
+  flex-direction: column;
+}

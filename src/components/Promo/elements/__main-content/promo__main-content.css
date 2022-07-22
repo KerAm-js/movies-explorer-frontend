@@ -1,0 +1,19 @@
+.promo__main-content {
+  margin: 0 0 84px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1023px) {
+  .promo__main-content {
+    flex-flow: column-reverse;
+    align-items: center;
+    margin-bottom: 92px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .promo__main-content {
+    margin-bottom: 80px;
+  }
+}
